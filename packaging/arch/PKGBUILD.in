@@ -1,0 +1,48 @@
+# Generated for a local source archive by scripts/package-arch.ts.
+# The generated PKGBUILD includes the exact source archive SHA-256.
+pkgname=bluet
+pkgver=@VERSION@
+pkgrel=1
+pkgdesc='Native Bluetooth device manager using the system BlueZ service'
+arch=('x86_64')
+url='https://github.com/suryavamsi6/bluet'
+license=('custom:unlicensed')
+depends=('bluez' 'dbus' 'fontconfig' 'gcc-libs' 'glibc' 'icu' 'libxcb'
+         'libxkbcommon' 'libxkbcommon-x11' 'libglvnd' 'libpulse' 'vulkan-icd-loader' 'wayland')
+makedepends=('bun' 'desktop-file-utils')
+optdepends=('vulkan-driver: a Vulkan driver for your graphics hardware')
+# Bun stores the JS, fonts and GPUI addon in the executable itself.
+options=('!strip' '!debug')
+source=("bluet-${pkgver}.tar.gz")
+sha256sums=('@SOURCE_SHA256@')
+
+prepare() {
+  cd "bluet-${pkgver}"
+  bun install --frozen-lockfile --ignore-scripts
+}
+
+build() {
+  cd "bluet-${pkgver}"
+  bun run build
+}
+
+check() {
+  cd "bluet-${pkgver}"
+  bun run typecheck
+  bun test
+  desktop-file-validate packaging/linux/dev.bluet.manager.desktop
+}
+
+package() {
+  cd "bluet-${pkgver}"
+  install -Dm755 dist/bluet "${pkgdir}/usr/bin/bluet"
+  install -Dm644 packaging/linux/dev.bluet.manager.desktop \
+    "${pkgdir}/usr/share/applications/dev.bluet.manager.desktop"
+  install -Dm644 packaging/linux/dev.bluet.manager.svg \
+    "${pkgdir}/usr/share/icons/hicolor/scalable/apps/dev.bluet.manager.svg"
+  install -Dm644 README.md "${pkgdir}/usr/share/doc/bluet/README.md"
+  install -Dm644 packaging/linux/PROJECT-LICENSE-NOTICE \
+    "${pkgdir}/usr/share/licenses/bluet/PROJECT-LICENSE-NOTICE"
+  install -dm755 "${pkgdir}/usr/share/licenses/bluet/third-party"
+  install -m644 assets/licenses/* "${pkgdir}/usr/share/licenses/bluet/third-party/"
+}

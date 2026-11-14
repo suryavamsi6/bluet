@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Bluet
+GenericName=Bluetooth Manager
+Comment=Manage Bluetooth devices and connections
+Exec=bluet
+Icon=dev.bluet.manager
+Terminal=false
+Categories=Settings;HardwareSettings;
+Keywords=Bluetooth;Devices;Headphones;Pairing;
+StartupNotify=true
+StartupWMClass=dev.bluet.manager

@@ -1,0 +1,3367 @@
+{
+  "type": "frame",
+  "id": "xx2HW",
+  "x": 1520,
+  "y": 290,
+  "name": "Bluet \u2014 add a device",
+  "clip": true,
+  "width": 1440,
+  "height": 1000,
+  "fill": "#111317",
+  "cornerRadius": 10,
+  "stroke": "#2B3039",
+  "strokeWidth": 1,
+  "layout": "vertical",
+  "children": [
+    {
+      "type": "frame",
+      "id": "M28gfS",
+      "name": "Linux window title bar",
+      "width": "fill_container",
+      "height": 44,
+      "fill": "#16181D",
+      "stroke": "#2B3039",
+      "strokeWidth": {
+        "bottom": 1
+      },
+      "padding": [
+        0,
+        16
+      ],
+      "justifyContent": "space_between",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "u6NV0U",
+          "name": "Window identity",
+          "gap": 8,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "c1KljA",
+              "name": "Bluetooth app icon",
+              "width": 15,
+              "height": 15,
+              "icon": "bluetooth",
+              "library": "lucide",
+              "fill": "#5B92F5"
+            },
+            {
+              "type": "text",
+              "id": "Cbr8u",
+              "name": "Window title",
+              "fill": "#969EAE",
+              "content": "Bluet",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "600"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "KRL9y",
+          "name": "Window controls",
+          "gap": 8,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "WE4ok",
+              "name": "Window minus",
+              "width": 28,
+              "height": 24,
+              "cornerRadius": 4,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "WE4ok/NT1Af",
+                  "name": "Action icon",
+                  "width": 13,
+                  "height": 13,
+                  "icon": "minus",
+                  "library": "lucide",
+                  "fill": "#969EAE"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "jTNxX",
+              "name": "Window square",
+              "width": 28,
+              "height": 24,
+              "cornerRadius": 4,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "jTNxX/NT1Af",
+                  "name": "Action icon",
+                  "width": 13,
+                  "height": 13,
+                  "icon": "square",
+                  "library": "lucide",
+                  "fill": "#969EAE"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Fsipo",
+              "name": "Window x",
+              "width": 28,
+              "height": 24,
+              "cornerRadius": 4,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "Fsipo/NT1Af",
+                  "name": "Action icon",
+                  "width": 13,
+                  "height": 13,
+                  "icon": "x",
+                  "library": "lucide",
+                  "fill": "#969EAE"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "sS6fd",
+      "name": "Application workspace",
+      "width": "fill_container",
+      "height": "fill_container",
+      "children": [
+        {
+          "type": "frame",
+          "id": "oXRdn",
+          "name": "Navigation sidebar",
+          "width": 220,
+          "height": "fill_container",
+          "fill": {
+            "type": "shader",
+            "enabled": true,
+            "url": "effects/bluet-dither.glsl",
+            "uniforms": {
+              "u_base": "#16181D",
+              "u_tint": "#345580",
+              "u_strength": 0.45,
+              "u_pixelSize": 1.5,
+              "u_glow": 0.07,
+              "u_motion": 1
+            }
+          },
+          "stroke": "#2B3039",
+          "strokeWidth": {
+            "right": 1
+          },
+          "layout": "vertical",
+          "gap": 28,
+          "padding": [
+            28,
+            18,
+            20,
+            18
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "c38kIl",
+              "name": "Application identity",
+              "width": "fill_container",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Te4Rq",
+                  "name": "Bluet icon",
+                  "width": 36,
+                  "height": 40,
+                  "fill": "#3370DA",
+                  "cornerRadius": 9,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "ULv4N",
+                      "name": "Bluet Bluetooth symbol",
+                      "width": 24,
+                      "height": 24,
+                      "icon": "bluetooth",
+                      "library": "lucide",
+                      "fill": "#FFFFFF"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "cq4Ip",
+                  "name": "Application name",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "d47kS",
+                      "name": "Bluet",
+                      "fill": "#F0F2F6",
+                      "content": "Bluet",
+                      "fontFamily": "Inter",
+                      "fontSize": 21,
+                      "fontWeight": "600",
+                      "letterSpacing": -0.6
+                    },
+                    {
+                      "type": "text",
+                      "id": "gll9R",
+                      "name": "Application purpose",
+                      "fill": "#969EAE",
+                      "content": "Bluetooth manager",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "xiWmH",
+              "name": "Bluetooth power control",
+              "width": "fill_container",
+              "fill": "#181B21",
+              "cornerRadius": 8,
+              "stroke": "#2B3039",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 10,
+              "padding": 14,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "A86Zv",
+                  "name": "Power status row",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "lElSs",
+                      "name": "Bluetooth power label",
+                      "fill": "#F0F2F6",
+                      "content": "Bluetooth",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ITRCI",
+                      "name": "Bluetooth enabled",
+                      "width": 34,
+                      "height": 20,
+                      "fill": "#3370DA",
+                      "cornerRadius": 12,
+                      "padding": 3,
+                      "justifyContent": "end",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "ITRCI/RlVtP",
+                          "name": "Switch thumb",
+                          "fill": "#FFFFFF",
+                          "width": 14,
+                          "height": 14
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "x99A0",
+                  "name": "Bluetooth availability",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "xYS8g",
+                      "name": "Adapter ready indicator",
+                      "fill": "#75D9A3",
+                      "width": 5,
+                      "height": 5
+                    },
+                    {
+                      "type": "text",
+                      "id": "YHfVH",
+                      "name": "Bluetooth power status",
+                      "fill": "#969EAE",
+                      "content": "On and ready to connect",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "DvRxe",
+              "name": "Primary navigation",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 6,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "HLXmQ",
+                  "name": "Devices navigation",
+                  "width": "fill_container",
+                  "fill": "#1C2C45",
+                  "cornerRadius": 6,
+                  "gap": 10,
+                  "padding": [
+                    10,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "HLXmQ/b0dKc",
+                      "name": "Navigation icon",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "bluetooth",
+                      "library": "lucide",
+                      "fill": "#5B92F5"
+                    },
+                    {
+                      "type": "text",
+                      "id": "HLXmQ/oqfA6",
+                      "name": "Navigation label",
+                      "fill": "#F0F2F6",
+                      "content": "Devices",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "r1hJ3",
+                  "name": "File transfers navigation",
+                  "width": "fill_container",
+                  "cornerRadius": 6,
+                  "gap": 10,
+                  "padding": [
+                    10,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "r1hJ3/b0dKc",
+                      "name": "Navigation icon",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "arrow-left-right",
+                      "library": "lucide",
+                      "fill": "#969EAE"
+                    },
+                    {
+                      "type": "text",
+                      "id": "r1hJ3/oqfA6",
+                      "name": "Navigation label",
+                      "fill": "#969EAE",
+                      "content": "File transfers",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "NDEfi",
+                  "name": "Activity navigation",
+                  "width": "fill_container",
+                  "cornerRadius": 6,
+                  "gap": 10,
+                  "padding": [
+                    10,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "NDEfi/b0dKc",
+                      "name": "Navigation icon",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "clock-3",
+                      "library": "lucide",
+                      "fill": "#969EAE"
+                    },
+                    {
+                      "type": "text",
+                      "id": "NDEfi/oqfA6",
+                      "name": "Navigation label",
+                      "fill": "#969EAE",
+                      "content": "Activity",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "G9XSv",
+              "name": "Sidebar flexible space",
+              "width": "fill_container",
+              "height": "fill_container"
+            },
+            {
+              "type": "frame",
+              "id": "iIgJX",
+              "name": "Local adapter",
+              "width": "fill_container",
+              "stroke": "#2B3039",
+              "strokeWidth": {
+                "top": 1
+              },
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                16,
+                4
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ZWVFB",
+                  "name": "Local adapter label",
+                  "fill": "#7D8798",
+                  "content": "THIS COMPUTER",
+                  "fontFamily": "Geist Mono",
+                  "fontSize": 9,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1.2
+                },
+                {
+                  "type": "frame",
+                  "id": "jjffl",
+                  "name": "Computer identity",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "isJGx",
+                      "name": "Computer icon",
+                      "width": 20,
+                      "height": 20,
+                      "icon": "laptop",
+                      "library": "lucide",
+                      "fill": "#969EAE"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "dWbtn",
+                      "name": "Computer information",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "B2tku3",
+                          "name": "Computer name",
+                          "fill": "#F0F2F6",
+                          "content": "surya-linux",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "WU5qD",
+                          "name": "Adapter name",
+                          "fill": "#969EAE",
+                          "content": "Intel AX211 \u00b7 hci0",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "lEvEW",
+              "name": "Settings navigation",
+              "width": "fill_container",
+              "cornerRadius": 6,
+              "gap": 10,
+              "padding": [
+                10,
+                12
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "lEvEW/b0dKc",
+                  "name": "Navigation icon",
+                  "width": 18,
+                  "height": 18,
+                  "icon": "settings-2",
+                  "library": "lucide",
+                  "fill": "#969EAE"
+                },
+                {
+                  "type": "text",
+                  "id": "lEvEW/oqfA6",
+                  "name": "Navigation label",
+                  "fill": "#969EAE",
+                  "content": "Settings",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "aPyml",
+          "name": "Device browser",
+          "width": "fill_container",
+          "height": "fill_container",
+          "fill": {
+            "type": "shader",
+            "enabled": true,
+            "url": "effects/bluet-dither.glsl",
+            "uniforms": {
+              "u_base": "#111317",
+              "u_tint": "#345580",
+              "u_strength": 0.38,
+              "u_pixelSize": 1.5,
+              "u_glow": 0.085,
+              "u_motion": 1
+            }
+          },
+          "layout": "vertical",
+          "gap": 22,
+          "padding": [
+            30,
+            32,
+            24,
+            32
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "GNIjR",
+              "name": "Devices page header",
+              "width": "fill_container",
+              "gap": 16,
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Xd5rF",
+                  "name": "Page heading",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "JEJft",
+                      "name": "Page title",
+                      "fill": "#F0F2F6",
+                      "content": "Your devices",
+                      "fontFamily": "Inter",
+                      "fontSize": 28,
+                      "fontWeight": "600",
+                      "letterSpacing": -0.9
+                    },
+                    {
+                      "type": "text",
+                      "id": "uBNf5",
+                      "name": "Page description",
+                      "fill": "#969EAE",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Manage your connections and discover nearby devices.",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "wSvWy",
+                  "name": "Add Bluetooth device",
+                  "fill": "#3370DA",
+                  "cornerRadius": 6,
+                  "gap": 8,
+                  "padding": [
+                    10,
+                    16
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "wSvWy/Rimjt",
+                      "name": "Button icon",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "plus",
+                      "library": "lucide",
+                      "fill": "#FFFFFF"
+                    },
+                    {
+                      "type": "text",
+                      "id": "wSvWy/UkWI0",
+                      "name": "Button label",
+                      "fill": "#FFFFFF",
+                      "content": "Add device",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "DCeHp",
+              "name": "Device filters and search",
+              "width": "fill_container",
+              "gap": 20,
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "onSuF",
+                  "name": "Device filter tabs",
+                  "fill": "#16181D",
+                  "cornerRadius": 7,
+                  "gap": 4,
+                  "padding": 3,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "F8Qirl",
+                      "name": "All devices tab",
+                      "fill": "#22262E",
+                      "cornerRadius": 4,
+                      "padding": [
+                        8,
+                        12
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "PjcSk",
+                          "name": "All devices tab label",
+                          "fill": "#F0F2F6",
+                          "content": "All devices",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "fjiDS",
+                      "name": "Connected tab",
+                      "fill": "#16181D",
+                      "cornerRadius": 4,
+                      "padding": [
+                        8,
+                        12
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "AI7S7",
+                          "name": "Connected tab label",
+                          "fill": "#969EAE",
+                          "content": "Connected",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "yWuhF",
+                      "name": "Saved tab",
+                      "fill": "#16181D",
+                      "cornerRadius": 4,
+                      "padding": [
+                        8,
+                        12
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "D3ELSt",
+                          "name": "Saved tab label",
+                          "fill": "#969EAE",
+                          "content": "Saved",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "WOWsj",
+                  "name": "Search Bluetooth devices",
+                  "width": 250,
+                  "fill": "#181B21",
+                  "cornerRadius": 6,
+                  "stroke": "#2B3039",
+                  "strokeWidth": 1,
+                  "gap": 10,
+                  "padding": [
+                    10,
+                    12
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "WOWsj/e728pD",
+                      "name": "Search icon",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "search",
+                      "library": "lucide",
+                      "fill": "#969EAE"
+                    },
+                    {
+                      "type": "text",
+                      "id": "WOWsj/HCtEL",
+                      "name": "Search placeholder",
+                      "fill": "#969EAE",
+                      "content": "Search devices\u2026",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "RMzof",
+              "name": "Bluetooth devices",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ZUU4k",
+                  "name": "Connected devices",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Ng5h6",
+                      "name": "Connected section heading",
+                      "width": "fill_container",
+                      "padding": [
+                        0,
+                        0,
+                        12,
+                        0
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "uYt3T",
+                          "name": "Connected heading and count",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "HjYUN",
+                              "name": "Connected label",
+                              "fill": "#F0F2F6",
+                              "content": "Connected",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Lt6ga",
+                              "name": "Connected count",
+                              "fill": "#969EAE",
+                              "content": "3",
+                              "fontFamily": "Geist Mono",
+                              "fontSize": 10,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Bf5QY",
+                      "name": "WH-1000XM5 selected",
+                      "width": "fill_container",
+                      "height": 72,
+                      "fill": {
+                        "type": "shader",
+                        "enabled": true,
+                        "url": "effects/bluet-dither.glsl",
+                        "uniforms": {
+                          "u_base": "#1C2C45",
+                          "u_tint": "#345580",
+                          "u_strength": 0.45,
+                          "u_pixelSize": 1.5,
+                          "u_glow": 0.1,
+                          "u_motion": 1
+                        }
+                      },
+                      "cornerRadius": 8,
+                      "stroke": "#3370DA",
+                      "strokeWidth": 1,
+                      "gap": 14,
+                      "padding": [
+                        12,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "Bf5QY/f0m7ah",
+                          "name": "Device icon container",
+                          "width": 42,
+                          "height": 42,
+                          "fill": "#22262E",
+                          "cornerRadius": 8,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "Bf5QY/Gzxg3",
+                              "name": "Device type icon",
+                              "width": 22,
+                              "height": 22,
+                              "icon": "headphones",
+                              "library": "lucide",
+                              "fill": "#5B92F5"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Bf5QY/cPedT",
+                          "name": "Device identity",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Bf5QY/j7KJ4n",
+                              "name": "Device name",
+                              "fill": "#F0F2F6",
+                              "content": "WH-1000XM5",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Bf5QY/MzL41",
+                              "name": "Device description",
+                              "fill": "#969EAE",
+                              "content": "Headphones \u00b7 Audio output",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Bf5QY/oTRYY",
+                          "name": "Device status",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "Bf5QY/m5hyhp",
+                              "name": "Device battery icon",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "battery-medium",
+                              "library": "lucide",
+                              "fill": "#75D9A3"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Bf5QY/N88CzC",
+                              "name": "Device battery value",
+                              "fill": "#969EAE",
+                              "content": "86%",
+                              "fontFamily": "Geist Mono",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Bf5QY/L5glRA",
+                          "name": "Device row action",
+                          "width": 28,
+                          "height": 28,
+                          "cornerRadius": 4,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "Bf5QY/L5glRA/NT1Af",
+                              "name": "Action icon",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "ellipsis",
+                              "library": "lucide",
+                              "fill": "#969EAE"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "TWw5D",
+                      "name": "MX Master 3S connected",
+                      "width": "fill_container",
+                      "height": 72,
+                      "stroke": "#2B3039",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "gap": 14,
+                      "padding": [
+                        12,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "TWw5D/f0m7ah",
+                          "name": "Device icon container",
+                          "width": 42,
+                          "height": 42,
+                          "fill": "#22262E",
+                          "cornerRadius": 8,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "TWw5D/Gzxg3",
+                              "name": "Device type icon",
+                              "width": 22,
+                              "height": 22,
+                              "icon": "mouse",
+                              "library": "lucide",
+                              "fill": "#969EAE"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "TWw5D/cPedT",
+                          "name": "Device identity",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "TWw5D/j7KJ4n",
+                              "name": "Device name",
+                              "fill": "#F0F2F6",
+                              "content": "MX Master 3S",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "text",
+                              "id": "TWw5D/MzL41",
+                              "name": "Device description",
+                              "fill": "#969EAE",
+                              "content": "Mouse \u00b7 Input device",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "TWw5D/oTRYY",
+                          "name": "Device status",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "TWw5D/m5hyhp",
+                              "name": "Device battery icon",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "battery-medium",
+                              "library": "lucide",
+                              "fill": "#75D9A3"
+                            },
+                            {
+                              "type": "text",
+                              "id": "TWw5D/N88CzC",
+                              "name": "Device battery value",
+                              "fill": "#969EAE",
+                              "content": "72%",
+                              "fontFamily": "Geist Mono",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "TWw5D/L5glRA",
+                          "name": "Device row action",
+                          "width": 28,
+                          "height": 28,
+                          "cornerRadius": 4,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "TWw5D/L5glRA/NT1Af",
+                              "name": "Action icon",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "ellipsis",
+                              "library": "lucide",
+                              "fill": "#969EAE"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "wq48x",
+                      "name": "Keychron K3 Pro connected",
+                      "width": "fill_container",
+                      "height": 72,
+                      "stroke": "#2B3039",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "gap": 14,
+                      "padding": [
+                        12,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "wq48x/f0m7ah",
+                          "name": "Device icon container",
+                          "width": 42,
+                          "height": 42,
+                          "fill": "#22262E",
+                          "cornerRadius": 8,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "wq48x/Gzxg3",
+                              "name": "Device type icon",
+                              "width": 22,
+                              "height": 22,
+                              "icon": "keyboard",
+                              "library": "lucide",
+                              "fill": "#969EAE"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "wq48x/cPedT",
+                          "name": "Device identity",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "wq48x/j7KJ4n",
+                              "name": "Device name",
+                              "fill": "#F0F2F6",
+                              "content": "Keychron K3 Pro",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "text",
+                              "id": "wq48x/MzL41",
+                              "name": "Device description",
+                              "fill": "#969EAE",
+                              "content": "Keyboard \u00b7 Input device",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "wq48x/oTRYY",
+                          "name": "Device status",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "wq48x/m5hyhp",
+                              "name": "Device battery icon",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "battery-medium",
+                              "library": "lucide",
+                              "fill": "#75D9A3"
+                            },
+                            {
+                              "type": "text",
+                              "id": "wq48x/N88CzC",
+                              "name": "Device battery value",
+                              "fill": "#969EAE",
+                              "content": "64%",
+                              "fontFamily": "Geist Mono",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "wq48x/L5glRA",
+                          "name": "Device row action",
+                          "width": 28,
+                          "height": 28,
+                          "cornerRadius": 4,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "wq48x/L5glRA/NT1Af",
+                              "name": "Action icon",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "ellipsis",
+                              "library": "lucide",
+                              "fill": "#969EAE"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "sZaRR",
+                  "name": "Saved devices",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "RaJhV",
+                      "name": "Saved section heading",
+                      "width": "fill_container",
+                      "padding": [
+                        0,
+                        0,
+                        12,
+                        0
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "J9UW2n",
+                          "name": "Saved heading and count",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Trut3",
+                              "name": "Saved label",
+                              "fill": "#F0F2F6",
+                              "content": "Saved",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "S6tkTM",
+                              "name": "Saved count",
+                              "fill": "#969EAE",
+                              "content": "2",
+                              "fontFamily": "Geist Mono",
+                              "fontSize": 10,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Qf1Pc",
+                      "name": "Pixel 9 saved",
+                      "width": "fill_container",
+                      "height": 68,
+                      "stroke": "#2B3039",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "gap": 14,
+                      "padding": [
+                        12,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "Qf1Pc/f0m7ah",
+                          "name": "Device icon container",
+                          "width": 42,
+                          "height": 42,
+                          "fill": "#22262E",
+                          "cornerRadius": 8,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "Qf1Pc/Gzxg3",
+                              "name": "Device type icon",
+                              "width": 22,
+                              "height": 22,
+                              "icon": "smartphone",
+                              "library": "lucide",
+                              "fill": "#969EAE"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Qf1Pc/cPedT",
+                          "name": "Device identity",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Qf1Pc/j7KJ4n",
+                              "name": "Device name",
+                              "fill": "#F0F2F6",
+                              "content": "Pixel 9",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Qf1Pc/MzL41",
+                              "name": "Device description",
+                              "fill": "#969EAE",
+                              "content": "Phone \u00b7 Last connected yesterday",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Qf1Pc/oTRYY",
+                          "x": 699,
+                          "y": 27.5,
+                          "name": "Device status",
+                          "enabled": false,
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "Qf1Pc/m5hyhp",
+                              "name": "Device battery icon",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "battery-medium",
+                              "library": "lucide",
+                              "fill": "#75D9A3"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Qf1Pc/N88CzC",
+                              "name": "Device battery value",
+                              "fill": "#969EAE",
+                              "content": "86%",
+                              "fontFamily": "Geist Mono",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "A5TwBd",
+                          "name": "Connect saved device",
+                          "fill": "#22262E",
+                          "cornerRadius": 6,
+                          "stroke": "#2B3039",
+                          "strokeWidth": 1,
+                          "gap": 8,
+                          "padding": [
+                            7,
+                            12
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "A5TwBd/LazRq",
+                              "name": "Secondary label",
+                              "fill": "#F0F2F6",
+                              "content": "Connect",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "urz4j",
+                      "name": "Marshall Emberton II saved",
+                      "width": "fill_container",
+                      "height": 68,
+                      "stroke": "#2B3039",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "gap": 14,
+                      "padding": [
+                        12,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "urz4j/f0m7ah",
+                          "name": "Device icon container",
+                          "width": 42,
+                          "height": 42,
+                          "fill": "#22262E",
+                          "cornerRadius": 8,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "urz4j/Gzxg3",
+                              "name": "Device type icon",
+                              "width": 22,
+                              "height": 22,
+                              "icon": "speaker",
+                              "library": "lucide",
+                              "fill": "#969EAE"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "urz4j/cPedT",
+                          "name": "Device identity",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "urz4j/j7KJ4n",
+                              "name": "Device name",
+                              "fill": "#F0F2F6",
+                              "content": "Marshall Emberton II",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "text",
+                              "id": "urz4j/MzL41",
+                              "name": "Device description",
+                              "fill": "#969EAE",
+                              "content": "Speaker \u00b7 Last connected 3 days ago",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "urz4j/oTRYY",
+                          "x": 699,
+                          "y": 27.5,
+                          "name": "Device status",
+                          "enabled": false,
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "urz4j/m5hyhp",
+                              "name": "Device battery icon",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "battery-medium",
+                              "library": "lucide",
+                              "fill": "#75D9A3"
+                            },
+                            {
+                              "type": "text",
+                              "id": "urz4j/N88CzC",
+                              "name": "Device battery value",
+                              "fill": "#969EAE",
+                              "content": "86%",
+                              "fontFamily": "Geist Mono",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "hGwia",
+                          "name": "Connect saved device",
+                          "fill": "#22262E",
+                          "cornerRadius": 6,
+                          "stroke": "#2B3039",
+                          "strokeWidth": 1,
+                          "gap": 8,
+                          "padding": [
+                            7,
+                            12
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "hGwia/LazRq",
+                              "name": "Secondary label",
+                              "fill": "#F0F2F6",
+                              "content": "Connect",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Hz6oY",
+                  "name": "Nearby discovery",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "U01hVw",
+                      "name": "Nearby section heading",
+                      "width": "fill_container",
+                      "padding": [
+                        0,
+                        0,
+                        12,
+                        0
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "KlSY5",
+                          "name": "Nearby heading and count",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "zTbBb",
+                              "name": "Nearby label",
+                              "fill": "#F0F2F6",
+                              "content": "Nearby",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Mau7S",
+                              "name": "Nearby count",
+                              "fill": "#969EAE",
+                              "content": "2",
+                              "fontFamily": "Geist Mono",
+                              "fontSize": 10,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "VGkMu",
+                          "name": "Discovery indicator",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "xAQrv",
+                              "name": "Scan indicator",
+                              "width": 13,
+                              "height": 13,
+                              "icon": "radar",
+                              "library": "lucide",
+                              "fill": "#5B92F5",
+                              "effect": {
+                                "type": "shader",
+                                "url": "effects/bluet-scan.glsl",
+                                "uniforms": {
+                                  "u_content": "pencil:object",
+                                  "u_duration": 3.6,
+                                  "u_motion": 1
+                                }
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "id": "rGP0u",
+                              "name": "Scan label",
+                              "fill": "#5B92F5",
+                              "content": "Scanning nearby\u2026",
+                              "fontFamily": "Inter",
+                              "fontSize": 10,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "z7Y0V",
+                      "name": "Nothing Ear (a) nearby",
+                      "width": "fill_container",
+                      "height": 68,
+                      "stroke": "#2B3039",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "gap": 14,
+                      "padding": [
+                        12,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "z7Y0V/f0m7ah",
+                          "name": "Device icon container",
+                          "width": 42,
+                          "height": 42,
+                          "fill": "#22262E",
+                          "cornerRadius": 8,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "z7Y0V/Gzxg3",
+                              "name": "Device type icon",
+                              "width": 22,
+                              "height": 22,
+                              "icon": "headphones",
+                              "library": "lucide",
+                              "fill": "#969EAE"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "z7Y0V/cPedT",
+                          "name": "Device identity",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "z7Y0V/j7KJ4n",
+                              "name": "Device name",
+                              "fill": "#F0F2F6",
+                              "content": "Nothing Ear (a)",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "text",
+                              "id": "z7Y0V/MzL41",
+                              "name": "Device description",
+                              "fill": "#969EAE",
+                              "content": "Headphones \u00b7 Ready to pair",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "z7Y0V/oTRYY",
+                          "x": 699,
+                          "y": 27.5,
+                          "name": "Device status",
+                          "enabled": false,
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "z7Y0V/m5hyhp",
+                              "name": "Device battery icon",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "battery-medium",
+                              "library": "lucide",
+                              "fill": "#75D9A3"
+                            },
+                            {
+                              "type": "text",
+                              "id": "z7Y0V/N88CzC",
+                              "name": "Device battery value",
+                              "fill": "#969EAE",
+                              "content": "86%",
+                              "fontFamily": "Geist Mono",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "vtsKm",
+                          "name": "Pair nearby device",
+                          "fill": "#1C2C45",
+                          "cornerRadius": 6,
+                          "stroke": "#1C2C45",
+                          "strokeWidth": 1,
+                          "gap": 8,
+                          "padding": [
+                            7,
+                            14
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "vtsKm/LazRq",
+                              "name": "Secondary label",
+                              "fill": "#5B92F5",
+                              "content": "Pair",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "JUCZW",
+                      "name": "8BitDo Pro 2 nearby",
+                      "width": "fill_container",
+                      "height": 68,
+                      "stroke": "#2B3039",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "gap": 14,
+                      "padding": [
+                        12,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "JUCZW/f0m7ah",
+                          "name": "Device icon container",
+                          "width": 42,
+                          "height": 42,
+                          "fill": "#22262E",
+                          "cornerRadius": 8,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "JUCZW/Gzxg3",
+                              "name": "Device type icon",
+                              "width": 22,
+                              "height": 22,
+                              "icon": "gamepad-2",
+                              "library": "lucide",
+                              "fill": "#969EAE"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "JUCZW/cPedT",
+                          "name": "Device identity",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "JUCZW/j7KJ4n",
+                              "name": "Device name",
+                              "fill": "#F0F2F6",
+                              "content": "8BitDo Pro 2",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "text",
+                              "id": "JUCZW/MzL41",
+                              "name": "Device description",
+                              "fill": "#969EAE",
+                              "content": "Game controller \u00b7 Ready to pair",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "JUCZW/oTRYY",
+                          "x": 699,
+                          "y": 27.5,
+                          "name": "Device status",
+                          "enabled": false,
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "JUCZW/m5hyhp",
+                              "name": "Device battery icon",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "battery-medium",
+                              "library": "lucide",
+                              "fill": "#75D9A3"
+                            },
+                            {
+                              "type": "text",
+                              "id": "JUCZW/N88CzC",
+                              "name": "Device battery value",
+                              "fill": "#969EAE",
+                              "content": "86%",
+                              "fontFamily": "Geist Mono",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "eiwm8",
+                          "name": "Pair nearby device",
+                          "fill": "#1C2C45",
+                          "cornerRadius": 6,
+                          "stroke": "#1C2C45",
+                          "strokeWidth": 1,
+                          "gap": 8,
+                          "padding": [
+                            7,
+                            14
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "eiwm8/LazRq",
+                              "name": "Secondary label",
+                              "fill": "#5B92F5",
+                              "content": "Pair",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "yWoaV",
+              "name": "Device browser footer",
+              "width": "fill_container",
+              "stroke": "#2B3039",
+              "strokeWidth": {
+                "top": 1
+              },
+              "padding": [
+                16,
+                0,
+                0,
+                0
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "sI7MP",
+                  "name": "Discoverability status",
+                  "gap": 7,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "V3GUC",
+                      "name": "Discoverability icon",
+                      "width": 13,
+                      "height": 13,
+                      "icon": "eye-off",
+                      "library": "lucide",
+                      "fill": "#7D8798"
+                    },
+                    {
+                      "type": "text",
+                      "id": "IPuqh",
+                      "name": "Discoverability label",
+                      "fill": "#969EAE",
+                      "content": "Hidden from nearby devices",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "E5jORL",
+                  "name": "Visibility action",
+                  "fill": "#5B92F5",
+                  "content": "Make discoverable",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "F3fM6w",
+          "name": "Selected device inspector",
+          "width": 340,
+          "height": "fill_container",
+          "fill": {
+            "type": "shader",
+            "enabled": true,
+            "url": "effects/bluet-dither.glsl",
+            "uniforms": {
+              "u_base": "#181B21",
+              "u_tint": "#345580",
+              "u_strength": 0.52,
+              "u_pixelSize": 1.5,
+              "u_glow": 0.12,
+              "u_motion": 1
+            }
+          },
+          "stroke": "#2B3039",
+          "strokeWidth": {
+            "left": 1
+          },
+          "layout": "vertical",
+          "gap": 22,
+          "padding": 24,
+          "children": [
+            {
+              "type": "frame",
+              "id": "GBX2I",
+              "name": "Device details header",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "YuPxm",
+                  "name": "Device details title",
+                  "fill": "#969EAE",
+                  "content": "Device details",
+                  "fontFamily": "Inter",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                },
+                {
+                  "type": "frame",
+                  "id": "QPWrR",
+                  "name": "Device options",
+                  "width": 28,
+                  "height": 28,
+                  "cornerRadius": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "QPWrR/NT1Af",
+                      "name": "Action icon",
+                      "width": 17,
+                      "height": 17,
+                      "icon": "ellipsis",
+                      "library": "lucide",
+                      "fill": "#969EAE"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Fm0RK",
+              "name": "Selected headphones identity",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "padding": [
+                4,
+                0,
+                0,
+                0
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Dy6fP",
+                  "name": "Headphones symbol background",
+                  "width": 88,
+                  "height": 88,
+                  "fill": {
+                    "type": "shader",
+                    "enabled": true,
+                    "url": "effects/bluet-signal.glsl",
+                    "uniforms": {
+                      "u_base": "#1C2C45",
+                      "u_color": "#5B92F5",
+                      "u_duration": 4.8,
+                      "u_motion": 1,
+                      "u_strength": 0.65
+                    }
+                  },
+                  "cornerRadius": 44,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "ECMc0",
+                      "name": "Selected headphones symbol",
+                      "width": 40,
+                      "height": 40,
+                      "icon": "headphones",
+                      "library": "lucide",
+                      "fill": "#5B92F5"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "G8lULY",
+                  "name": "Headphones name and model",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "padding": [
+                    6,
+                    0,
+                    0,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "E1aES",
+                      "name": "Headphones model name",
+                      "fill": "#F0F2F6",
+                      "content": "WH-1000XM5",
+                      "fontFamily": "Inter",
+                      "fontSize": 22,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "e6mZ1R",
+                      "name": "Headphones manufacturer",
+                      "fill": "#969EAE",
+                      "content": "Sony \u00b7 Wireless headphones",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "lclq1",
+                  "name": "Headphones connected status",
+                  "fill": "#193328",
+                  "cornerRadius": 4,
+                  "gap": 6,
+                  "padding": [
+                    4,
+                    8
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "lclq1/g1stYO",
+                      "name": "Connected indicator",
+                      "fill": "#75D9A3",
+                      "width": 5,
+                      "height": 5
+                    },
+                    {
+                      "type": "text",
+                      "id": "lclq1/G2r1G",
+                      "name": "Status label",
+                      "fill": "#75D9A3",
+                      "content": "Connected",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "TO4Yq",
+              "name": "Headphones battery",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "padding": [
+                0,
+                0,
+                2,
+                0
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "YS5Gg",
+                  "name": "Battery value row",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "V6enbN",
+                      "name": "Battery icon and label",
+                      "gap": 7,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "H6hKM",
+                          "name": "Battery symbol",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "battery-full",
+                          "library": "lucide",
+                          "fill": "#75D9A3"
+                        },
+                        {
+                          "type": "text",
+                          "id": "gopzq",
+                          "name": "Battery label",
+                          "fill": "#969EAE",
+                          "content": "Battery",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "c20Fur",
+                      "name": "Battery percentage",
+                      "fill": "#F0F2F6",
+                      "content": "86%",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "GRSel",
+                  "name": "Battery charge track",
+                  "width": "fill_container",
+                  "height": 5,
+                  "fill": "#22262E",
+                  "cornerRadius": 3,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ubmMF",
+                      "name": "Battery charge level",
+                      "width": 251,
+                      "height": "fill_container",
+                      "fill": "#75D9A3",
+                      "cornerRadius": 3
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "XZQu3",
+              "name": "Section divider",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#2B3039"
+            },
+            {
+              "type": "frame",
+              "id": "LLcwY",
+              "name": "Audio controls",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ncDqd",
+                  "name": "Audio heading",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "f9Yu9",
+                      "name": "Audio label",
+                      "fill": "#F0F2F6",
+                      "content": "Audio",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "xsVSo",
+                      "name": "Audio codec",
+                      "fill": "#22262E",
+                      "cornerRadius": 3,
+                      "padding": [
+                        3,
+                        6
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Akvlz",
+                          "name": "Codec label",
+                          "fill": "#969EAE",
+                          "content": "LDAC",
+                          "fontFamily": "Inter",
+                          "fontSize": 9,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tCJXx",
+                  "name": "Audio profile control",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "WiFHb",
+                      "name": "Profile label",
+                      "fill": "#969EAE",
+                      "content": "Output profile",
+                      "fontFamily": "Inter",
+                      "fontSize": 11,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tx6nT",
+                      "name": "Audio output profile",
+                      "width": "fill_container",
+                      "fill": "#22262E",
+                      "cornerRadius": 6,
+                      "stroke": "#2B3039",
+                      "strokeWidth": 1,
+                      "gap": 10,
+                      "padding": [
+                        11,
+                        12
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "tx6nT/k7zT4G",
+                          "name": "Selected option",
+                          "fill": "#F0F2F6",
+                          "content": "High fidelity playback",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "tx6nT/QdV7D",
+                          "name": "Select chevron",
+                          "width": 14,
+                          "height": 14,
+                          "icon": "chevron-down",
+                          "library": "lucide",
+                          "fill": "#969EAE"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "U1XIkv",
+                  "name": "Volume control",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "feFjL",
+                      "name": "Volume title and value",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "MlL1R",
+                          "name": "Volume label",
+                          "fill": "#969EAE",
+                          "content": "Volume",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "VdzhC",
+                          "name": "Volume percentage",
+                          "fill": "#F0F2F6",
+                          "content": "72%",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "alqyl",
+                      "name": "Volume slider row",
+                      "width": "fill_container",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "x7MDIq",
+                          "name": "Volume icon",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "volume-2",
+                          "library": "lucide",
+                          "fill": "#969EAE"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Dl1AR",
+                          "name": "Volume slider",
+                          "width": "fill_container",
+                          "height": 16,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "R6iX5",
+                              "name": "Volume active track",
+                              "width": 180,
+                              "height": 4,
+                              "fill": "#3370DA",
+                              "cornerRadius": 3
+                            },
+                            {
+                              "type": "ellipse",
+                              "id": "L3IVqN",
+                              "name": "Volume thumb",
+                              "fill": "#F0F2F6",
+                              "width": 10,
+                              "height": 10
+                            },
+                            {
+                              "type": "frame",
+                              "id": "JK3yr",
+                              "name": "Volume inactive track",
+                              "width": "fill_container",
+                              "height": 4,
+                              "fill": "#2B3039",
+                              "cornerRadius": 3
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tQL2C",
+              "name": "Section divider",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#2B3039"
+            },
+            {
+              "type": "frame",
+              "id": "t5sRH8",
+              "name": "Connection preferences",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ipyEa",
+                  "name": "Auto-connect preference",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "lhgre",
+                      "name": "Auto-connect explanation",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 5,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "CKjtN",
+                          "name": "Auto-connect label",
+                          "fill": "#F0F2F6",
+                          "content": "Auto-connect",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "HsO37",
+                          "name": "Auto-connect description",
+                          "fill": "#969EAE",
+                          "content": "Reconnect when in range",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tFyfN",
+                      "name": "Auto-connect enabled",
+                      "width": 34,
+                      "height": 20,
+                      "fill": "#3370DA",
+                      "cornerRadius": 12,
+                      "padding": 3,
+                      "justifyContent": "end",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "tFyfN/RlVtP",
+                          "name": "Switch thumb",
+                          "fill": "#FFFFFF",
+                          "width": 14,
+                          "height": 14
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Afftu",
+                  "name": "Trusted device preference",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "NDjbv",
+                      "name": "Trusted device explanation",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 5,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "S9WQEh",
+                          "name": "Trusted device label",
+                          "fill": "#F0F2F6",
+                          "content": "Trusted device",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "pybUn",
+                          "name": "Trusted device description",
+                          "fill": "#969EAE",
+                          "content": "Allow automatic connections",
+                          "fontFamily": "Inter",
+                          "fontSize": 10,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "cvMLK",
+                      "name": "Trusted device enabled",
+                      "width": 34,
+                      "height": 20,
+                      "fill": "#3370DA",
+                      "cornerRadius": 12,
+                      "padding": 3,
+                      "justifyContent": "end",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "cvMLK/RlVtP",
+                          "name": "Switch thumb",
+                          "fill": "#FFFFFF",
+                          "width": 14,
+                          "height": 14
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "RULwm",
+              "name": "Section divider",
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#2B3039"
+            },
+            {
+              "type": "frame",
+              "id": "LdgxE",
+              "name": "Connection information",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "YKLMN",
+                  "name": "Signal strength row",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "BlGrY",
+                      "name": "Signal strength key",
+                      "fill": "#969EAE",
+                      "content": "Signal strength",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "T7eAi",
+                      "name": "Signal strength value",
+                      "fill": "#75D9A3",
+                      "content": "Excellent \u00b7 \u221246 dBm",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "jo47v",
+                  "name": "Connected for row",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "oPOWF",
+                      "name": "Connected for key",
+                      "fill": "#969EAE",
+                      "content": "Connected for",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Vrc9g",
+                      "name": "Connected for value",
+                      "fill": "#F0F2F6",
+                      "content": "32 minutes",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "XqtNt",
+                  "name": "Device address row",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "xTBI2",
+                      "name": "Device address key",
+                      "fill": "#969EAE",
+                      "content": "Device address",
+                      "fontFamily": "Inter",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "JDWSy",
+                      "name": "Device address value",
+                      "fill": "#F0F2F6",
+                      "content": "AC:80:0A:4D:5E:2F",
+                      "fontFamily": "Geist Mono",
+                      "fontSize": 10,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "w6VHLq",
+              "name": "Inspector flexible space",
+              "width": "fill_container",
+              "height": "fill_container"
+            },
+            {
+              "type": "frame",
+              "id": "nQ8fu",
+              "name": "Device connection actions",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 14,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "r0Dlk0",
+                  "name": "Disconnect headphones",
+                  "width": "fill_container",
+                  "fill": "#22262E",
+                  "cornerRadius": 6,
+                  "stroke": "#2B3039",
+                  "strokeWidth": 1,
+                  "gap": 8,
+                  "padding": [
+                    10,
+                    16
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "r0Dlk0/LazRq",
+                      "name": "Secondary label",
+                      "fill": "#F0F2F6",
+                      "content": "Disconnect",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "HmNdM",
+                  "name": "Forget device action",
+                  "fill": "#F29399",
+                  "content": "Forget device",
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "udcqh",
+      "layoutPosition": "absolute",
+      "x": 0,
+      "y": 44,
+      "name": "GPUIX Dialog backdrop",
+      "width": 1440,
+      "height": 956,
+      "fill": "#06080DB8",
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "wRTZ3",
+          "name": "GPUIX Dialog / Add a device",
+          "width": 480,
+          "fill": {
+            "type": "shader",
+            "enabled": true,
+            "url": "effects/bluet-dither.glsl",
+            "uniforms": {
+              "u_base": "#181B21",
+              "u_tint": "#345580",
+              "u_strength": 0.45,
+              "u_pixelSize": 1.5,
+              "u_glow": 0.08,
+              "u_motion": 1
+            }
+          },
+          "cornerRadius": 12,
+          "stroke": "#2B3039",
+          "strokeWidth": 1,
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#00000040",
+            "offset": {
+              "x": 0,
+              "y": 16
+            },
+            "blur": 56
+          },
+          "layout": "vertical",
+          "gap": 24,
+          "padding": 28,
+          "children": [
+            {
+              "type": "frame",
+              "id": "z8jSR",
+              "name": "Dialog heading",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ryZU6",
+                  "name": "Dialog title",
+                  "fill": "#F0F2F6",
+                  "content": "Add a device",
+                  "fontFamily": "Inter",
+                  "fontSize": 21,
+                  "fontWeight": "600",
+                  "letterSpacing": -0.4
+                },
+                {
+                  "type": "frame",
+                  "id": "MrN1e",
+                  "name": "Close add device dialog",
+                  "width": 28,
+                  "height": 28,
+                  "cornerRadius": 4,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "MrN1e/NT1Af",
+                      "name": "Action icon",
+                      "width": 17,
+                      "height": 17,
+                      "icon": "x",
+                      "library": "lucide",
+                      "fill": "#969EAE"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "v88jo",
+              "name": "Pairing instruction",
+              "fill": "#969EAE",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Make sure your device is turned on and in pairing mode.",
+              "lineHeight": 1.5,
+              "fontFamily": "Inter",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "nqdA0",
+              "name": "Search discovered devices",
+              "width": "fill_container",
+              "fill": "#181B21",
+              "cornerRadius": 6,
+              "stroke": "#2B3039",
+              "strokeWidth": 1,
+              "gap": 10,
+              "padding": [
+                10,
+                12
+              ],
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "nqdA0/e728pD",
+                  "name": "Search icon",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "search",
+                  "library": "lucide",
+                  "fill": "#969EAE"
+                },
+                {
+                  "type": "text",
+                  "id": "nqdA0/HCtEL",
+                  "name": "Search placeholder",
+                  "fill": "#969EAE",
+                  "content": "Search devices\u2026",
+                  "fontFamily": "Inter",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "b4NSd",
+              "name": "Discovery results",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "uWwSW",
+                  "name": "Discovery progress",
+                  "width": "fill_container",
+                  "padding": [
+                    0,
+                    0,
+                    4,
+                    0
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "CcJ5F",
+                      "name": "Nearby device count",
+                      "fill": "#969EAE",
+                      "content": "NEARBY DEVICES \u00b7 2",
+                      "fontFamily": "Geist Mono",
+                      "fontSize": 10,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.6
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ZYcZh",
+                      "name": "Scanning status",
+                      "gap": 6,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "DVEtR",
+                          "name": "Scanning indicator",
+                          "width": 13,
+                          "height": 13,
+                          "icon": "radar",
+                          "library": "lucide",
+                          "fill": "#5B92F5",
+                          "effect": {
+                            "type": "shader",
+                            "url": "effects/bluet-scan.glsl",
+                            "uniforms": {
+                              "u_content": "pencil:object",
+                              "u_duration": 3.6,
+                              "u_motion": 1
+                            }
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "id": "I0Xacn",
+                          "name": "Scanning text",
+                          "fill": "#5B92F5",
+                          "content": "Scanning\u2026",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "p3vB9J",
+                  "name": "Nothing Ear (a) pairing option",
+                  "width": "fill_container",
+                  "height": 76,
+                  "fill": {
+                    "type": "shader",
+                    "enabled": true,
+                    "url": "effects/bluet-dither.glsl",
+                    "uniforms": {
+                      "u_base": "#1C2C45",
+                      "u_tint": "#345580",
+                      "u_strength": 0.45,
+                      "u_pixelSize": 1.5,
+                      "u_glow": 0.1,
+                      "u_motion": 1
+                    }
+                  },
+                  "cornerRadius": 7,
+                  "stroke": "#3370DA",
+                  "strokeWidth": 1,
+                  "gap": 14,
+                  "padding": [
+                    12,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "p3vB9J/f0m7ah",
+                      "name": "Device icon container",
+                      "width": 42,
+                      "height": 42,
+                      "fill": "#22262E",
+                      "cornerRadius": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "p3vB9J/Gzxg3",
+                          "name": "Device type icon",
+                          "width": 22,
+                          "height": 22,
+                          "icon": "headphones",
+                          "library": "lucide",
+                          "fill": "#5B92F5"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "p3vB9J/cPedT",
+                      "name": "Device identity",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "p3vB9J/j7KJ4n",
+                          "name": "Device name",
+                          "fill": "#F0F2F6",
+                          "content": "Nothing Ear (a)",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "p3vB9J/MzL41",
+                          "name": "Device description",
+                          "fill": "#969EAE",
+                          "content": "Wireless headphones",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "p3vB9J/oTRYY",
+                      "x": 699,
+                      "y": 27.5,
+                      "name": "Device status",
+                      "enabled": false,
+                      "gap": 6,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "p3vB9J/m5hyhp",
+                          "name": "Device battery icon",
+                          "width": 17,
+                          "height": 17,
+                          "icon": "battery-medium",
+                          "library": "lucide",
+                          "fill": "#75D9A3"
+                        },
+                        {
+                          "type": "text",
+                          "id": "p3vB9J/N88CzC",
+                          "name": "Device battery value",
+                          "fill": "#969EAE",
+                          "content": "86%",
+                          "fontFamily": "Geist Mono",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "icon",
+                      "id": "o3GMQi",
+                      "name": "Device selected",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "circle-check",
+                      "library": "lucide",
+                      "fill": "#5B92F5"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "xQP48",
+                  "name": "8BitDo Pro 2 pairing option",
+                  "width": "fill_container",
+                  "height": 76,
+                  "fill": "#181B21",
+                  "cornerRadius": 7,
+                  "stroke": "#2B3039",
+                  "strokeWidth": 1,
+                  "gap": 14,
+                  "padding": [
+                    12,
+                    16
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "xQP48/f0m7ah",
+                      "name": "Device icon container",
+                      "width": 42,
+                      "height": 42,
+                      "fill": "#22262E",
+                      "cornerRadius": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "xQP48/Gzxg3",
+                          "name": "Device type icon",
+                          "width": 22,
+                          "height": 22,
+                          "icon": "gamepad-2",
+                          "library": "lucide",
+                          "fill": "#969EAE"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "xQP48/cPedT",
+                      "name": "Device identity",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "xQP48/j7KJ4n",
+                          "name": "Device name",
+                          "fill": "#F0F2F6",
+                          "content": "8BitDo Pro 2",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "xQP48/MzL41",
+                          "name": "Device description",
+                          "fill": "#969EAE",
+                          "content": "Game controller",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "xQP48/oTRYY",
+                      "x": 699,
+                      "y": 27.5,
+                      "name": "Device status",
+                      "enabled": false,
+                      "gap": 6,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "xQP48/m5hyhp",
+                          "name": "Device battery icon",
+                          "width": 17,
+                          "height": 17,
+                          "icon": "battery-medium",
+                          "library": "lucide",
+                          "fill": "#75D9A3"
+                        },
+                        {
+                          "type": "text",
+                          "id": "xQP48/N88CzC",
+                          "name": "Device battery value",
+                          "fill": "#969EAE",
+                          "content": "86%",
+                          "fontFamily": "Geist Mono",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "icon",
+                      "id": "R8rNq",
+                      "name": "Device not selected",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "circle",
+                      "library": "lucide",
+                      "fill": "#7D8798"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "KJwkE",
+              "name": "Temporary discoverability notice",
+              "width": "fill_container",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "IgCjv",
+                  "name": "Discoverability notice icon",
+                  "width": 15,
+                  "height": 15,
+                  "icon": "info",
+                  "library": "lucide",
+                  "fill": "#969EAE"
+                },
+                {
+                  "type": "text",
+                  "id": "oLSrs",
+                  "name": "Discoverability explanation",
+                  "fill": "#969EAE",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Your computer is visible as surya-linux while this window is open.",
+                  "lineHeight": 1.5,
+                  "fontFamily": "Inter",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "NIjof",
+              "name": "Pairing dialog actions",
+              "width": "fill_container",
+              "stroke": "#2B3039",
+              "strokeWidth": {
+                "top": 1
+              },
+              "gap": 10,
+              "padding": [
+                18,
+                0,
+                0,
+                0
+              ],
+              "justifyContent": "end",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "jqEBV",
+                  "name": "Cancel pairing",
+                  "fill": "#22262E",
+                  "cornerRadius": 6,
+                  "stroke": "#2B3039",
+                  "strokeWidth": 1,
+                  "gap": 8,
+                  "padding": [
+                    10,
+                    16
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "jqEBV/LazRq",
+                      "name": "Secondary label",
+                      "fill": "#F0F2F6",
+                      "content": "Cancel",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "a2awnT",
+                  "name": "Pair selected device",
+                  "fill": "#3370DA",
+                  "cornerRadius": 6,
+                  "gap": 8,
+                  "padding": [
+                    10,
+                    16
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "a2awnT/Rimjt",
+                      "name": "Button icon",
+                      "width": 15,
+                      "height": 15,
+                      "icon": "link",
+                      "library": "lucide",
+                      "fill": "#FFFFFF"
+                    },
+                    {
+                      "type": "text",
+                      "id": "a2awnT/UkWI0",
+                      "name": "Button label",
+                      "fill": "#FFFFFF",
+                      "content": "Pair device",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
