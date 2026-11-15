@@ -1,4 +1,4 @@
-# Generated for a local source archive by scripts/package-arch.ts.
+# Generated for a local source archive by scripts/package-arch.sh.
 # The generated PKGBUILD includes the exact source archive SHA-256.
 pkgname=bluet
 pkgver=@VERSION@
@@ -7,35 +7,34 @@ pkgdesc='Native Bluetooth device manager using the system BlueZ service'
 arch=('x86_64')
 url='https://github.com/suryavamsi6/bluet'
 license=('custom:unlicensed')
-depends=('bluez' 'dbus' 'fontconfig' 'gcc-libs' 'glibc' 'icu' 'libxcb'
-         'libxkbcommon' 'libxkbcommon-x11' 'libglvnd' 'libpulse' 'vulkan-icd-loader' 'wayland')
-makedepends=('bun' 'desktop-file-utils')
+depends=('bluez' 'dbus' 'fontconfig' 'freetype2' 'gcc-libs' 'glibc' 'libxcb'
+         'libxkbcommon' 'libxkbcommon-x11' 'libglvnd' 'libpulse' 'vulkan-icd-loader'
+         'wayland' 'libx11' 'libxcursor' 'libxi' 'libxrandr')
+makedepends=('cargo' 'rust' 'pkg-config' 'desktop-file-utils')
 optdepends=('vulkan-driver: a Vulkan driver for your graphics hardware')
-# Bun stores the JS, fonts and GPUI addon in the executable itself.
 options=('!strip' '!debug')
 source=("bluet-${pkgver}.tar.gz")
 sha256sums=('@SOURCE_SHA256@')
 
 prepare() {
   cd "bluet-${pkgver}"
-  bun install --frozen-lockfile --ignore-scripts
+  cargo fetch --locked
 }
 
 build() {
   cd "bluet-${pkgver}"
-  bun run build
+  cargo build --release --locked
 }
 
 check() {
   cd "bluet-${pkgver}"
-  bun run typecheck
-  bun test
+  cargo test --locked --lib --bins
   desktop-file-validate packaging/linux/dev.bluet.manager.desktop
 }
 
 package() {
   cd "bluet-${pkgver}"
-  install -Dm755 dist/bluet "${pkgdir}/usr/bin/bluet"
+  install -Dm755 target/release/bluet "${pkgdir}/usr/bin/bluet"
   install -Dm644 packaging/linux/dev.bluet.manager.desktop \
     "${pkgdir}/usr/share/applications/dev.bluet.manager.desktop"
   install -Dm644 packaging/linux/dev.bluet.manager.svg \

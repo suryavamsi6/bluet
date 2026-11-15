@@ -1,0 +1,29 @@
+[package]
+name = "bluet"
+version = "1.0.0"
+edition = "2024"
+description = "Native BlueZ Bluetooth manager built with Rust and GPUI"
+
+[dependencies]
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
+flume = "0.11"
+unicode-segmentation = "1"
+futures-util = "0.3"
+gpui = "0.2.2"
+image = "0.25"
+serde = { version = "1", features = ["derive"] }
+signal-hook = "0.3"
+serde_json = "1"
+tokio = { version = "1", features = ["rt", "macros", "sync", "time", "process", "io-util"] }
+zbus = { version = "6.3", features = ["tokio"] }
+
+[profile.release]
+lto = "thin"
+codegen-units = 16
+strip = false
+
+[profile.dev]
+opt-level = 1
+
+[patch.crates-io]
+xattr = { path = "vendor/xattr" }

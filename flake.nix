@@ -1,5 +1,5 @@
 {
-  description = "Bluet, a native BlueZ Bluetooth manager";
+  description = "Bluet, a native BlueZ Bluetooth manager built with Rust and GPUI";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -15,7 +15,23 @@
         bluet = final.callPackage ./nix/package.nix { };
       };
       devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [ bun nodejs typescript pulseaudio dbus ];
+        packages = with pkgs; [
+          cargo
+          rustc
+          rustfmt
+          clippy
+          pkg-config
+          dbus
+          pulseaudio
+          wayland
+          wayland-protocols
+          libxkbcommon
+          libxcb
+          vulkan-loader
+          fontconfig
+          freetype
+          libGL
+        ];
       };
       nixosModules.default = import ./nix/module.nix self;
     };

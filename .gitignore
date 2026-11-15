@@ -1,5 +1,7 @@
-node_modules/
-dist/
+/target
+/dist
 *.log
 result
 result-*
+artifacts/*.live.png
+scripts/__pycache__/
