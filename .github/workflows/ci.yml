@@ -150,9 +150,10 @@ jobs:
           VERSION: ${{ github.ref_name }}
         run: |
           if [[ -z "${AUR_SSH_PRIVATE_KEY:-}" ]]; then
-            echo "AUR_SSH_PRIVATE_KEY is not set, so the recipe was not published."
-            echo "Generated recipe is in dist/aur/; attach it to the release or"
-            echo "set AUR_SSH_PRIVATE_KEY, AUR_USERNAME and AUR_EMAIL to automate."
+            # A warning rather than a plain success, so a green check cannot be
+            # mistaken for "the AUR has this version".
+            echo "::warning title=AUR not published::AUR_SSH_PRIVATE_KEY is unset," \
+                 "so the ${VERSION} recipe was generated and verified but not pushed."
             exit 0
           fi
 
