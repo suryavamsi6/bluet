@@ -4,6 +4,58 @@ A native Bluetooth manager built with **Rust and [GPUI](https://github.com/zed-i
 
 Bluet connects to the **existing BlueZ system service** through D-Bus using `zbus`. Device names, power, pairing, connection status, battery and trust come from BlueZ. Audio controls use the computer's existing PipeWire/PulseAudio service through `pactl`.
 
+## Install
+
+Every [release](https://github.com/suryavamsi6/bluet/releases) after v1.1.0
+carries a prebuilt tarball and a Flatpak bundle for x86_64. All of them need the system
+BlueZ `bluetoothd` service and a Vulkan driver.
+
+### Prebuilt tarball (any distribution)
+
+The binary is built on Ubuntu 22.04, so it runs on distributions with glibc
+2.35 or newer.
+
+```sh
+version=1.1.1   # the release you want
+curl -LO "https://github.com/suryavamsi6/bluet/releases/download/v${version}/bluet-${version}-x86_64-linux.tar.gz"
+curl -LO "https://github.com/suryavamsi6/bluet/releases/download/v${version}/bluet-${version}-x86_64-linux.tar.gz.sha256"
+sha256sum -c "bluet-${version}-x86_64-linux.tar.gz.sha256"
+tar -xzf "bluet-${version}-x86_64-linux.tar.gz"
+cd "bluet-${version}-x86_64-linux"
+./install.sh                          # into ~/.local, with an app-menu launcher
+# sudo PREFIX=/usr/local ./install.sh # or system-wide
+# ./install.sh --uninstall            # remove again (same PREFIX)
+```
+
+Or run `./bin/bluet` in place without installing. The tarball uses the
+distribution's libraries: Vulkan loader, `libxkbcommon`, Wayland/X11 client
+libraries, fontconfig and freetype, which any desktop install already has.
+Audio controls need `pactl` (`pulseaudio-utils` on Debian/Ubuntu/Fedora,
+`libpulse` on Arch).
+
+### Flatpak bundle
+
+```sh
+version=1.1.1   # the release you want
+curl -LO "https://github.com/suryavamsi6/bluet/releases/download/v${version}/bluet-x86_64.flatpak"
+flatpak install --user bluet-x86_64.flatpak
+flatpak run io.github.suryavamsi6.bluet
+```
+
+The bundle pulls the `org.freedesktop.Platform` runtime from Flathub if it is
+not installed yet, so Flathub must be configured as a remote. It is sandboxed
+with access to Wayland (falling back to X11), the GPU, the system BlueZ service
+on D-Bus, and the PulseAudio/PipeWire socket; `pactl` comes from the runtime.
+Bluet is not on Flathub yet; see
+[packaging/flatpak/FLATHUB.md](packaging/flatpak/FLATHUB.md). To build the
+bundle yourself:
+
+```sh
+packaging/flatpak/update-cargo-sources.sh
+flatpak-builder --user --install --force-clean --install-deps-from=flathub \
+  build-dir packaging/flatpak/io.github.suryavamsi6.bluet.yml
+```
+
 ## Run
 
 Requires Rust, a Linux desktop with working Vulkan drivers, and the system's BlueZ `bluetoothd` service. The current desktop user's normal D-Bus/PolicyKit permissions apply. `pactl` enables audio controls when the audio server exposes a Bluetooth card/output.
@@ -77,9 +129,12 @@ The generated source archive, checksum-pinned `PKGBUILD`, and `.SRCINFO` are als
 
 `.github/workflows/ci.yml` runs the tests, the D-Bus integration test, clippy
 and `cargo fmt --check` on every push and pull request, and builds the release
-binary. Pushing a `v*` tag additionally attaches the binary to a GitHub release
-and publishes the recipe to the AUR, generated from that tag's archive and
-verified against it before the push.
+binary on Ubuntu 22.04 along with its tarball, plus a Flatpak bundle; both are
+downloadable as workflow artifacts. Pushing a `v*` tag additionally creates the
+GitHub release (notes are generated once, so re-running the job only replaces
+the files), attaches the bare binary, the tarball with its `.sha256`, and the
+Flatpak bundle, and publishes the recipe to the AUR, generated from that tag's
+archive and verified against it before the push.
 
 ```sh
 # bump Cargo.toml's version, commit, then tag that commit:

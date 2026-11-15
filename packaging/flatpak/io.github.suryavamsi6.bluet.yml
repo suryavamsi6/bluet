@@ -1,0 +1,67 @@
+# Flatpak manifest for Bluet.
+#
+# Build locally from the repository root:
+#   packaging/flatpak/update-cargo-sources.sh
+#   flatpak-builder --user --install --force-clean --install-deps-from=flathub \
+#     build-dir packaging/flatpak/io.github.suryavamsi6.bluet.yml
+#   flatpak run io.github.suryavamsi6.bluet
+#
+# cargo-sources.json is generated from Cargo.lock (CI regenerates it on every
+# run), so the build is fully offline. The Flathub copy of this manifest uses a
+# pinned git source instead of the local directory; see FLATHUB.md.
+id: io.github.suryavamsi6.bluet
+runtime: org.freedesktop.Platform
+runtime-version: '26.08'
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+command: bluet
+finish-args:
+  # GPUI draws through Vulkan on Wayland, falling back to X11.
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --share=ipc
+  - --device=dri
+  # Bluetooth adapters and devices come from the system BlueZ service.
+  - --system-talk-name=org.bluez
+  # Volume, mute and profiles run pactl (from the runtime) against the
+  # session's PulseAudio or PipeWire-pulse server.
+  - --socket=pulseaudio
+build-options:
+  append-path: /usr/lib/sdk/rust-stable/bin
+  env:
+    CARGO_HOME: /run/build/bluet/cargo
+    CARGO_NET_OFFLINE: 'true'
+modules:
+  - name: bluet
+    buildsystem: simple
+    build-commands:
+      - cargo --offline fetch --manifest-path Cargo.toml --verbose
+      - cargo --offline build --release --locked
+      - install -Dm755 target/release/bluet /app/bin/bluet
+      # Same launcher as the distro packages, renamed to the Flatpak app id so
+      # the desktop file, icon, metainfo and window app_id all agree.
+      - >-
+        sed -e 's/^Icon=.*/Icon=io.github.suryavamsi6.bluet/'
+        -e 's/^StartupWMClass=.*/StartupWMClass=io.github.suryavamsi6.bluet/'
+        packaging/linux/dev.bluet.manager.desktop > io.github.suryavamsi6.bluet.desktop
+      - install -Dm644 io.github.suryavamsi6.bluet.desktop
+        /app/share/applications/io.github.suryavamsi6.bluet.desktop
+      - install -Dm644 packaging/linux/dev.bluet.manager.svg
+        /app/share/icons/hicolor/scalable/apps/io.github.suryavamsi6.bluet.svg
+      - install -Dm644 packaging/flatpak/io.github.suryavamsi6.bluet.metainfo.xml
+        /app/share/metainfo/io.github.suryavamsi6.bluet.metainfo.xml
+      - install -Dm644 packaging/linux/PROJECT-LICENSE-NOTICE
+        /app/share/licenses/io.github.suryavamsi6.bluet/PROJECT-LICENSE-NOTICE
+      - install -d /app/share/licenses/io.github.suryavamsi6.bluet/third-party
+      - install -m644 assets/licenses/* /app/share/licenses/io.github.suryavamsi6.bluet/third-party/
+    sources:
+      - type: dir
+        path: ../..
+        skip:
+          - target
+          - dist
+          - build-dir
+          - repo
+          - .flatpak-builder
+      - cargo-sources.json

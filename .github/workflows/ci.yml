@@ -53,8 +53,10 @@ jobs:
         run: cargo fmt --check
 
   build:
-    name: Build release binary
-    runs-on: ubuntu-24.04
+    name: Build release binary and tarball
+    # Built on the oldest supported Ubuntu LTS so the binary needs only
+    # glibc 2.35, and therefore runs on most current distributions.
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v5
 
@@ -74,32 +76,107 @@ jobs:
       - name: Build
         run: cargo build --locked --release
 
-      - name: Upload binary
+      - name: Package the tarball
+        run: |
+          ./scripts/package-tarball.sh
+          tar -tzvf dist/bluet-*-x86_64-linux.tar.gz
+          echo "Highest glibc symbol the binary needs:"
+          objdump -T dist/tarball/*/bin/bluet | grep -o 'GLIBC_[0-9.]*' | sort -uV | tail -n 1
+
+      - name: Check the tarball installs and its launcher validates
+        run: |
+          sudo apt-get install -y --no-install-recommends desktop-file-utils
+          work="$(mktemp -d)"
+          tar -xzf dist/bluet-*-x86_64-linux.tar.gz -C "$work"
+          PREFIX="$work/prefix" "$work"/bluet-*/install.sh
+          test -x "$work/prefix/bin/bluet"
+          desktop-file-validate "$work/prefix/share/applications/dev.bluet.manager.desktop"
+          PREFIX="$work/prefix" "$work"/bluet-*/install.sh --uninstall
+          test ! -e "$work/prefix/bin/bluet"
+
+      - name: Collect release files
+        run: |
+          install -Dm755 dist/tarball/*/bin/bluet release/bluet
+          cp dist/bluet-*-x86_64-linux.tar.gz dist/bluet-*-x86_64-linux.tar.gz.sha256 release/
+
+      - name: Upload release files
         uses: actions/upload-artifact@v4
         with:
           name: bluet-x86_64-linux
-          path: target/release/bluet
+          path: release/
           if-no-files-found: error
 
+  flatpak:
+    name: Build Flatpak bundle
+    runs-on: ubuntu-24.04
+    container:
+      image: ghcr.io/flathub-infra/flatpak-github-actions:freedesktop-26.08
+      options: --privileged
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Generate offline cargo sources from Cargo.lock
+        run: |
+          if ! command -v python3 >/dev/null || ! python3 -m venv --help >/dev/null 2>&1; then
+            dnf install -y python3 || apt-get install -y python3 python3-venv
+          fi
+          packaging/flatpak/update-cargo-sources.sh
+
+      - name: Validate desktop file and metainfo
+        run: |
+          desktop-file-validate packaging/linux/dev.bluet.manager.desktop
+          appstreamcli validate --no-net --explain \
+            packaging/flatpak/io.github.suryavamsi6.bluet.metainfo.xml
+
+      - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+        with:
+          manifest-path: packaging/flatpak/io.github.suryavamsi6.bluet.yml
+          bundle: bluet-x86_64.flatpak
+          artifact-name: bluet-x86_64-flatpak
+          cache-key: flatpak-builder-${{ hashFiles('Cargo.lock') }}
+
+      - name: Check the bundle installs and can run pactl
+        run: |
+          flatpak install --user -y --noninteractive bluet-x86_64.flatpak
+          flatpak info --user io.github.suryavamsi6.bluet
+          flatpak run --user --command=pactl io.github.suryavamsi6.bluet --version
+
   release:
-    name: Attach binary to the release
-    needs: [test, build]
-    # Only a tag is a release. A manual publish_aur run has no tag, and
-    # action-gh-release fails with "GitHub Releases requires a tag".
-    if: startsWith(github.ref, 'refs/tags/v')
+    name: Attach files to the release
+    needs: [test, build, flatpak]
+    # Only a tag is a release. A manual publish_aur run has no tag. A failed
+    # Flatpak build must not hold back the binary and tarball.
+    if: >-
+      !cancelled() && startsWith(github.ref, 'refs/tags/v')
+      && needs.test.result == 'success' && needs.build.result == 'success'
     runs-on: ubuntu-24.04
     permissions:
       contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      TAG: ${{ github.ref_name }}
     steps:
       - uses: actions/download-artifact@v4
         with:
           name: bluet-x86_64-linux
+          path: release
 
-      - name: Publish the release
-        uses: softprops/action-gh-release@v2
+      - uses: actions/download-artifact@v4
+        if: needs.flatpak.result == 'success'
         with:
-          files: bluet
-          generate_release_notes: true
+          name: bluet-x86_64-flatpak
+          path: release
+
+      - name: Create the release once, then attach files
+        # Notes are generated only when the release is created, so re-running
+        # this job replaces the files instead of appending the notes again.
+        run: |
+          ls -l release
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --verify-tag --title "$TAG" --generate-notes
+          fi
+          gh release upload "$TAG" release/* --clobber
 
   aur:
     name: Publish to the AUR

@@ -21,6 +21,10 @@ fn main() {
                 .expect("bundled fonts");
             cx.bind_keys(input::key_bindings());
 
+            // Compositors match a window to its desktop file by app id. Inside
+            // Flatpak that file is named after the Flatpak app id, not ours.
+            let app_id =
+                std::env::var("FLATPAK_ID").unwrap_or_else(|_| "dev.bluet.manager".to_string());
             let bounds = Bounds::centered(None, size(px(1440.0), px(1000.0)), cx);
             let window = cx
                 .open_window(
@@ -34,7 +38,7 @@ fn main() {
                         }),
                         window_decorations: Some(WindowDecorations::Client),
                         window_background: WindowBackgroundAppearance::Opaque,
-                        app_id: Some("dev.bluet.manager".into()),
+                        app_id: Some(app_id),
                         ..Default::default()
                     },
                     |_window, cx| cx.new(BluetApp::new),
