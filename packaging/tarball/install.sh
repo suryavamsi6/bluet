@@ -40,7 +40,7 @@ sed "s|^Exec=bluet|Exec=$bin|" "$here/share/applications/$app.desktop" > "$deskt
 chmod 644 "$desktop"
 mkdir -p "$doc" "$licenses/third-party"
 cp "$here/share/doc/bluet/README.md" "$doc/"
-cp "$here/share/licenses/bluet/PROJECT-LICENSE-NOTICE" "$licenses/"
+cp "$here/share/licenses/bluet/LICENSE-MIT" "$here/share/licenses/bluet/LICENSE-APACHE" "$licenses/"
 cp "$here/share/licenses/bluet/third-party/"* "$licenses/third-party/"
 refresh
 

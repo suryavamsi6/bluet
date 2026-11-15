@@ -19,5 +19,5 @@ Runtime requirements, supplied by your distribution:
   - fontconfig and freetype
   - pactl (pulseaudio-utils / libpulse) for audio controls; everything else works without it
 
-Bluet has no project license yet; see share/licenses/bluet/PROJECT-LICENSE-NOTICE.
+Bluet is licensed under MIT OR Apache-2.0; see share/licenses/bluet/LICENSE-MIT and LICENSE-APACHE.
 Bundled third-party licenses are in share/licenses/bluet/third-party/.

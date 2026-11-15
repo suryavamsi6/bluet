@@ -26,8 +26,7 @@ install -Dm644 packaging/linux/dev.bluet.manager.desktop \
 install -Dm644 packaging/linux/dev.bluet.manager.svg \
   "$stage/share/icons/hicolor/scalable/apps/dev.bluet.manager.svg"
 install -Dm644 README.md "$stage/share/doc/bluet/README.md"
-install -Dm644 packaging/linux/PROJECT-LICENSE-NOTICE \
-  "$stage/share/licenses/bluet/PROJECT-LICENSE-NOTICE"
+install -Dm644 LICENSE-MIT LICENSE-APACHE -t "$stage/share/licenses/bluet/"
 install -d "$stage/share/licenses/bluet/third-party"
 install -m644 assets/licenses/* "$stage/share/licenses/bluet/third-party/"
 install -m755 packaging/tarball/install.sh "$stage/install.sh"

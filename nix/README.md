@@ -18,5 +18,5 @@ This installs Bluet and enables the system Bluetooth service. Audio
 configuration remains under your control. Graphics drivers are loaded from the
 NixOS system driver path.
 
-No license has been specified for the Bluet project. Third-party notices are
-installed alongside the package.
+Bluet is licensed under MIT OR Apache-2.0. Third-party notices are installed
+alongside the package.

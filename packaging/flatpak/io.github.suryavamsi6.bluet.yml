@@ -51,8 +51,8 @@ modules:
         /app/share/icons/hicolor/scalable/apps/io.github.suryavamsi6.bluet.svg
       - install -Dm644 packaging/flatpak/io.github.suryavamsi6.bluet.metainfo.xml
         /app/share/metainfo/io.github.suryavamsi6.bluet.metainfo.xml
-      - install -Dm644 packaging/linux/PROJECT-LICENSE-NOTICE
-        /app/share/licenses/io.github.suryavamsi6.bluet/PROJECT-LICENSE-NOTICE
+      - install -Dm644 LICENSE-MIT LICENSE-APACHE
+        -t /app/share/licenses/io.github.suryavamsi6.bluet/
       - install -d /app/share/licenses/io.github.suryavamsi6.bluet/third-party
       - install -m644 assets/licenses/* /app/share/licenses/io.github.suryavamsi6.bluet/third-party/
     sources:

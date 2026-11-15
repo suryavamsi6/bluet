@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Bluet has not declared a project license yet, so <project_license> is
-     deliberately absent. Flathub will not accept the app until one is chosen. -->
 <component type="desktop-application">
   <id>io.github.suryavamsi6.bluet</id>
   <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT OR Apache-2.0</project_license>
   <name>Bluet</name>
   <summary>Manage Bluetooth devices and connections</summary>
   <developer id="io.github.suryavamsi6">

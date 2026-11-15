@@ -5,23 +5,19 @@ to each `v*` release. Getting Bluet onto Flathub itself is a one-time manual
 submission that Flathub reviewers approve; after that, updates are pull
 requests against Flathub's own repository for the app.
 
-## Blocker: a project license
+## License
 
-Flathub does not accept an app without a declared license. Bluet has none yet
-(see `packaging/linux/PROJECT-LICENSE-NOTICE`). Before submitting:
-
-1. Choose a license and add a `LICENSE` file to this repository.
-2. Add `<project_license>SPDX-ID</project_license>` to
-   `io.github.suryavamsi6.bluet.metainfo.xml`, after `<metadata_license>`.
-3. Install the license in the manifest as
-   `/app/share/licenses/io.github.suryavamsi6.bluet/LICENSE`.
+Bluet is dual-licensed MIT OR Apache-2.0 (`LICENSE-MIT`, `LICENSE-APACHE`).
+The metainfo declares it in `<project_license>` and the manifest installs both
+files under `/app/share/licenses/io.github.suryavamsi6.bluet/`, which is what
+Flathub checks for.
 
 ## Before submitting
 
 - The app id `io.github.suryavamsi6.bluet` is verified through the GitHub
   account `suryavamsi6`, so no domain is needed. Keep the repository public.
-- Tag a release that contains the license and this Flatpak packaging, and make
-  sure its `<release>` entry exists in the metainfo.
+- Use a release tag that contains this Flatpak packaging (v1.1.1 or later),
+  and make sure its `<release>` entry exists in the metainfo.
 - Lint the manifest and the built repo with Flathub's linter:
 
   ```sh
