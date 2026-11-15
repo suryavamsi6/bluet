@@ -90,8 +90,9 @@ git push origin v1.1.1
 ```
 
 The AUR step needs `AUR_SSH_PRIVATE_KEY`, `AUR_USERNAME` and `AUR_EMAIL`
-repository secrets, and the `bluet` package must exist once at
-https://aur.archlinux.org/submit/ before automation can push to it.
+repository secrets. The private key must be the half of the key registered in
+the AUR account settings; there is no submission form, since the first push to
+a package's git repo is what creates it.
 
 ## Nix and NixOS
 

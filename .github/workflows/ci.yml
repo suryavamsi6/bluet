@@ -163,9 +163,13 @@ jobs:
           ssh-keyscan -t ed25519 aur.archlinux.org >> ~/.ssh/known_hosts 2>/dev/null
           export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/aur -o IdentitiesOnly=yes"
 
+          # The AUR has no submission form: a package exists as soon as something is
+          # pushed to its git repo, and the first push creates it. So a failure here
+          # means the SSH key is not the one registered on the AUR account, not that
+          # the package needs to be created somewhere.
           if ! git clone --depth 1 "ssh://aur@aur.archlinux.org/${AUR_PKGNAME}.git" aur-repo; then
-            echo "::error::Could not clone the AUR package. A brand-new package must be" \
-                 "created once at https://aur.archlinux.org/submit/ before automation can push."
+            echo "::error::Could not clone the AUR package. Check that AUR_SSH_PRIVATE_KEY" \
+                 "is the private half of the key registered in the AUR account settings."
             exit 1
           fi
 
