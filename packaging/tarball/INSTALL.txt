@@ -1,0 +1,23 @@
+Bluet - native Bluetooth manager for Linux (x86_64, glibc 2.35 or newer)
+
+Run it in place:
+    ./bin/bluet
+
+Install for your user (into ~/.local, adds an app-menu launcher):
+    ./install.sh
+
+Install system-wide:
+    sudo PREFIX=/usr/local ./install.sh
+
+Uninstall:
+    ./install.sh --uninstall          (add the same PREFIX you installed with)
+
+Runtime requirements, supplied by your distribution:
+  - the BlueZ bluetoothd service and D-Bus
+  - a Vulkan driver (Mesa or the vendor driver) and the Vulkan loader
+  - Wayland or X11 libraries: libxkbcommon, libxkbcommon-x11, libwayland-client, libxcb
+  - fontconfig and freetype
+  - pactl (pulseaudio-utils / libpulse) for audio controls; everything else works without it
+
+Bluet is licensed under MIT OR Apache-2.0; see share/licenses/bluet/LICENSE-MIT and LICENSE-APACHE.
+Bundled third-party licenses are in share/licenses/bluet/third-party/.

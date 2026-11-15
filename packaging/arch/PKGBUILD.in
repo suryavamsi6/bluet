@@ -6,7 +6,7 @@ pkgrel=1
 pkgdesc='Native Bluetooth device manager using the system BlueZ service'
 arch=('x86_64')
 url='https://github.com/suryavamsi6/bluet'
-license=('custom:unlicensed')
+license=('MIT OR Apache-2.0')
 depends=('bluez' 'dbus' 'fontconfig' 'freetype2' 'gcc-libs' 'glibc' 'libxcb'
          'libxkbcommon' 'libxkbcommon-x11' 'libglvnd' 'libpulse' 'vulkan-icd-loader'
          'wayland' 'libx11' 'libxcursor' 'libxi' 'libxrandr')
@@ -43,8 +43,7 @@ package() {
   install -Dm644 packaging/linux/dev.bluet.manager.svg \
     "${pkgdir}/usr/share/icons/hicolor/scalable/apps/dev.bluet.manager.svg"
   install -Dm644 README.md "${pkgdir}/usr/share/doc/bluet/README.md"
-  install -Dm644 packaging/linux/PROJECT-LICENSE-NOTICE \
-    "${pkgdir}/usr/share/licenses/bluet/PROJECT-LICENSE-NOTICE"
+  install -Dm644 LICENSE-MIT LICENSE-APACHE -t "${pkgdir}/usr/share/licenses/bluet/"
   install -dm755 "${pkgdir}/usr/share/licenses/bluet/third-party"
   install -m644 assets/licenses/* "${pkgdir}/usr/share/licenses/bluet/third-party/"
 }

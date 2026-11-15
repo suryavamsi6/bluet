@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.suryavamsi6.bluet</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT OR Apache-2.0</project_license>
+  <name>Bluet</name>
+  <summary>Manage Bluetooth devices and connections</summary>
+  <developer id="io.github.suryavamsi6">
+    <name>Surya Vamsi</name>
+  </developer>
+  <description>
+    <p>
+      Bluet is a native Bluetooth manager drawn directly on the GPU with GPUI,
+      without a browser or Electron. It talks to the system BlueZ service, so
+      what you see is the real state of your adapters and devices.
+    </p>
+    <ul>
+      <li>Turn adapters on and off and control their visibility</li>
+      <li>Discover, pair, connect, trust and forget devices</li>
+      <li>Answer PIN, passkey and confirmation requests in the app</li>
+      <li>See battery levels reported by connected devices</li>
+      <li>Change volume, mute and audio profiles of Bluetooth audio devices</li>
+    </ul>
+    <p>
+      Bluet needs a running BlueZ service and a Vulkan-capable graphics driver.
+      Audio controls use the PulseAudio or PipeWire server of your session.
+    </p>
+  </description>
+  <launchable type="desktop-id">io.github.suryavamsi6.bluet.desktop</launchable>
+  <provides>
+    <binary>bluet</binary>
+  </provides>
+  <url type="homepage">https://github.com/suryavamsi6/bluet</url>
+  <url type="bugtracker">https://github.com/suryavamsi6/bluet/issues</url>
+  <url type="vcs-browser">https://github.com/suryavamsi6/bluet</url>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Devices, details and audio controls</caption>
+      <image>https://raw.githubusercontent.com/suryavamsi6/bluet/main/artifacts/bluet-native.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Device options</caption>
+      <image>https://raw.githubusercontent.com/suryavamsi6/bluet/main/artifacts/bluet-device-options.png</image>
+    </screenshot>
+  </screenshots>
+  <categories>
+    <category>Settings</category>
+    <category>HardwareSettings</category>
+  </categories>
+  <keywords>
+    <keyword>Bluetooth</keyword>
+    <keyword>Headphones</keyword>
+    <keyword>Pairing</keyword>
+  </keywords>
+  <requires>
+    <display_length compare="ge">1200</display_length>
+  </requires>
+  <recommends>
+    <control>pointing</control>
+    <control>keyboard</control>
+  </recommends>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="1.1.0" date="2026-11-15">
+      <url type="details">https://github.com/suryavamsi6/bluet/releases/tag/v1.1.0</url>
+    </release>
+  </releases>
+</component>

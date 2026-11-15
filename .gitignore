@@ -6,3 +6,7 @@ result-*
 artifacts/*.live.png
 scripts/__pycache__/
 .pi/
+/build-dir
+/.flatpak-builder
+/repo
+packaging/flatpak/cargo-sources.json

@@ -3,6 +3,8 @@ name = "bluet"
 version = "1.1.0"
 edition = "2024"
 description = "Native BlueZ Bluetooth manager built with Rust and GPUI"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/suryavamsi6/bluet"
 
 [dependencies]
 chrono = { version = "0.4", default-features = false, features = ["clock"] }
