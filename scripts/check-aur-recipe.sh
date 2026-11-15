@@ -55,4 +55,23 @@ if [[ "$actual" != "$recorded" ]]; then
   die "Regenerate the recipe with ./scripts/package-aur.sh."
 fi
 
+# .SRCINFO must describe the same recipe. It is a projection of the PKGBUILD, so
+# a stale or malformed one (an empty "key = " line, or an optdepends entry split
+# into one word per line) would be published to the AUR as-is and confuse every
+# client that reads it.
+srcinfo="${AUR_SRCINFO:-$(dirname "$recipe")/.SRCINFO}"
+if [[ -f "$srcinfo" ]]; then
+  if grep -qE '^[[:space:]]+[a-z]+ =[[:space:]]*$' "$srcinfo"; then
+    die "$srcinfo has an empty field value, which no client can parse."
+  fi
+  srcinfo_version="$(sed -n 's/^\tpkgver = //p' "$srcinfo" | head -n 1)"
+  [[ "$srcinfo_version" == "$recipe_version" ]] \
+    || die "$(basename "$srcinfo") is for ${srcinfo_version:-nothing} but the recipe is ${recipe_version}."
+  # Every optdepends sentence in the recipe must survive as one .SRCINFO line.
+  while IFS= read -r entry; do
+    grep -qxF "$(printf '\toptdepends = %s' "$entry")" "$srcinfo" \
+      || die "$(basename "$srcinfo") does not carry the optdepends entry: $entry"
+  done < <(sed -n "s/^optdepends=(//p" "$recipe" | tr -d "'\")" | tr ',' '\n' | sed 's/^ *//;s/ *$//' | sed '/^$/d')
+fi
+
 echo "OK: ${recipe_version} recipe matches the archive (sha256 ${actual})."

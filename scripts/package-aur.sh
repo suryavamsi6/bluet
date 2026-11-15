@@ -66,12 +66,22 @@ sed -e "s/@VERSION@/${version}/g" -e "s/@SOURCE_SHA256@/${sha256}/g" \
   echo "	pkgver = ${pkgver}"
   echo "	pkgrel = ${pkgrel}"
   echo "	url = ${url}"
-  printf '	arch = %s\n' "${arch[@]}"
-  echo "	license = ${license}"
-  printf '	makedepends = %s\n' "${makedepends[@]}"
-  printf '	depends = %s\n' "${depends[@]}"
-  printf '	optdepends = %s\n' "${optdepends[@]}"
-  printf '	options = %s\n' "${options[@]}"
+  printf '\tarch = %s\n' "${arch[@]}"
+  printf '\tlicense = %s\n' "${license}"
+  printf '\tmakedepends = %s\n' "${makedepends[@]}"
+  printf '\tdepends = %s\n' "${depends[@]}"
+  # A field that is absent or empty emits no line at all, exactly as makepkg's
+  # own .SRCINFO generator behaves; printing a bare "key = " would be malformed.
+  for name in optdepends provides conflicts replaces groups; do
+    # Copy the array into the positional parameters so each element keeps its
+    # spaces: an optdepends entry is a whole sentence, not one word per line.
+    # shellcheck disable=SC1083
+    eval "set -- \${$name[@]+\"\${$name[@]}\"}"
+    for value in "$@"; do
+      printf '\t%s = %s\n' "$name" "$value"
+    done
+  done
+  printf '\toptions = %s\n' "${options[@]}"
   echo "	source = ${pkgname}-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz"
   echo "	sha256sums = ${sha256}"
   echo ""

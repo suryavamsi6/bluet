@@ -11,6 +11,7 @@ depends=('bluez' 'dbus' 'fontconfig' 'freetype2' 'gcc-libs' 'glibc' 'libxcb'
          'libxkbcommon' 'libxkbcommon-x11' 'libglvnd' 'libpulse' 'vulkan-icd-loader'
          'wayland' 'libx11' 'libxcursor' 'libxi' 'libxrandr')
 makedepends=('cargo' 'rust' 'pkg-config' 'desktop-file-utils')
+optdepends=('vulkan-driver: a Vulkan driver for your graphics hardware')
 # Let makepkg strip: the Rust binary carries about 10 MB of symbols it does not
 # need at runtime. The Bun build this replaced needed !strip because its payload
 # lived inside the executable, which no longer applies.
