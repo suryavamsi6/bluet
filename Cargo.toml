@@ -1,6 +1,6 @@
 [package]
 name = "bluet"
-version = "1.0.0"
+version = "1.1.0"
 edition = "2024"
 description = "Native BlueZ Bluetooth manager built with Rust and GPUI"
 
@@ -26,4 +26,6 @@ strip = false
 opt-level = 1
 
 [patch.crates-io]
+# xattr 0.2.3 references libc::ENOATTR, which current libc releases no longer
+# export on Linux. See vendor/xattr/README.bluet.md for the one-line fix.
 xattr = { path = "vendor/xattr" }

@@ -1,0 +1,179 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libfontconfig-dev libfreetype-dev libpulse-dev libvulkan-dev \
+            libwayland-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev \
+            libxcb-xfixes0-dev libxcb-xkb-dev libxkbcommon-dev \
+            libxkbcommon-x11-dev pkg-config
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Unit tests
+        run: cargo test --locked --lib --bins
+
+      - name: D-Bus integration test
+        run: |
+          dbus-run-session -- sh -c \
+            'DBUS_SYSTEM_BUS_ADDRESS="$DBUS_SESSION_BUS_ADDRESS" cargo test --locked --test dbus_integration'
+
+      - name: Clippy
+        run: cargo clippy --locked --all-targets -- -D warnings
+
+      - name: Formatting
+        run: cargo fmt --check
+
+  build:
+    name: Build release binary
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libfontconfig-dev libfreetype-dev libpulse-dev libvulkan-dev \
+            libwayland-dev libxcb1-dev libxcb-render0-dev libxcb-shape0-dev \
+            libxcb-xfixes0-dev libxcb-xkb-dev libxkbcommon-dev \
+            libxkbcommon-x11-dev pkg-config
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Build
+        run: cargo build --locked --release
+
+      - name: Upload binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: bluet-x86_64-linux
+          path: target/release/bluet
+          if-no-files-found: error
+
+  release:
+    name: Attach binary to the release
+    needs: [test, build]
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: bluet-x86_64-linux
+
+      - name: Publish the release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: bluet
+          generate_release_notes: true
+
+  aur:
+    name: Publish to the AUR
+    needs: [test, build]
+    # The recipe points at the GitHub tag archive, so the tag must already
+    # exist; that is why this runs on the tag rather than on the main push.
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-24.04
+    # An Arch container is the only way to get a real makepkg for .SRCINFO.
+    container: archlinux:latest
+    steps:
+      - name: Install packaging tools
+        run: |
+          pacman -Syu --noconfirm --needed git openssh curl pacman-contrib
+
+      - uses: actions/checkout@v5
+
+      - name: Check the tag matches Cargo.toml
+        run: |
+          version="$(sed -n 's/^version = "\(.*\)"$/\1/p' Cargo.toml | head -n 1)"
+          if [[ "v${version}" != "${GITHUB_REF_NAME}" ]]; then
+            echo "Tag ${GITHUB_REF_NAME} does not match Cargo.toml version ${version}." >&2
+            exit 1
+          fi
+          echo "Releasing Bluet ${version}"
+
+      - name: Generate PKGBUILD and .SRCINFO
+        run: |
+          # GitHub can take a moment to serve a freshly pushed tag archive, and
+          # the checksum has to describe the exact bytes users will download.
+          for attempt in 1 2 3 4 5 6; do
+            if ./scripts/package-aur.sh; then
+              exit 0
+            fi
+            echo "Tag archive not available yet (attempt ${attempt}); retrying in 15s."
+            sleep 15
+          done
+          echo "::error::Could not fetch the tag archive. Check that tag" \
+               "${GITHUB_REF_NAME} exists and is pushed."
+          exit 1
+
+      - name: Show the generated recipe
+        run: |
+          echo "--- PKGBUILD ---"
+          cat dist/aur/PKGBUILD
+          echo "--- .SRCINFO ---"
+          cat dist/aur/.SRCINFO
+
+      - name: Push to the AUR
+        env:
+          AUR_SSH_PRIVATE_KEY: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+          AUR_USERNAME: ${{ secrets.AUR_USERNAME }}
+          AUR_EMAIL: ${{ secrets.AUR_EMAIL }}
+          AUR_PKGNAME: bluet
+          VERSION: ${{ github.ref_name }}
+        run: |
+          if [[ -z "${AUR_SSH_PRIVATE_KEY:-}" ]]; then
+            echo "AUR_SSH_PRIVATE_KEY is not set; skipping the AUR push."
+            exit 0
+          fi
+
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$AUR_SSH_PRIVATE_KEY" > ~/.ssh/aur
+          chmod 600 ~/.ssh/aur
+          ssh-keyscan -t ed25519 aur.archlinux.org >> ~/.ssh/known_hosts 2>/dev/null
+          export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/aur -o IdentitiesOnly=yes"
+
+          if ! git clone --depth 1 "ssh://aur@aur.archlinux.org/${AUR_PKGNAME}.git" aur-repo; then
+            echo "::error::Could not clone the AUR package. A brand-new AUR package must"
+            echo "::error::be created once at https://aur.archlinux.org/submit/ first."
+            exit 1
+          fi
+
+          cp dist/aur/PKGBUILD dist/aur/.SRCINFO aur-repo/
+          cd aur-repo
+          git config user.name "${AUR_USERNAME:-bluet CI}"
+          git config user.email "${AUR_EMAIL:-bluet@localhost}"
+          git add PKGBUILD .SRCINFO
+          if git diff --cached --quiet; then
+            echo "The AUR already carries ${VERSION}."
+            exit 0
+          fi
+          git commit -q -m "upgpkg: ${AUR_PKGNAME} ${VERSION#v}-1"
+          git push origin HEAD:master

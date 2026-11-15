@@ -5,3 +5,4 @@ result
 result-*
 artifacts/*.live.png
 scripts/__pycache__/
+.pi/

@@ -42,16 +42,45 @@ The native smoke test launches the real GPUI window against the installed servic
 
 ## Arch Linux package
 
-From a checkout with `base-devel`, `cargo`, `rust`, `pkg-config` and `desktop-file-utils` installed:
+### From the AUR
+
+```sh
+yay -S bluet        # or: paru -S bluet
+```
+
+The AUR recipe fetches the tagged source archive from GitHub and builds it
+locally, so it tracks releases. `./scripts/package-aur.sh` regenerates that
+recipe and its `.SRCINFO` for whatever version `Cargo.toml` currently declares.
+
+### From a local checkout
+
+With `base-devel`, `cargo`, `rust`, `pkg-config` and `desktop-file-utils` installed:
 
 ```sh
 ./scripts/package-arch.sh
-sudo pacman -U dist/arch/bluet-1.0.0-1-x86_64.pkg.tar.zst
+sudo pacman -U dist/arch/bluet-*-x86_64.pkg.tar.zst
 ```
 
 The script builds from the current checkout, validates the source archive checksum, runs the unit tests, and produces an installable package. The package includes the desktop launcher and icon, requires BlueZ and the normal graphics libraries, and uses `libpulse` for `pactl`; it does not install a PulseAudio server or change Bluetooth service settings. A Vulkan driver appropriate for the computer is required.
 
 The generated source archive, checksum-pinned `PKGBUILD`, and `.SRCINFO` are also in `dist/arch/`. To prepare those without building, use `./scripts/package-arch.sh --prepare-only`. The tracked recipe template is `packaging/arch/PKGBUILD.in`; no public GitHub release is required.
+
+## Releases
+
+`.github/workflows/ci.yml` runs the tests, the D-Bus integration test, clippy
+and `cargo fmt --check` on every push and pull request, and builds the release
+binary. Pushing a `v*` tag additionally attaches the binary to a GitHub release
+and publishes the updated recipe to the AUR.
+
+```sh
+# bump Cargo.toml's version, then:
+git tag v1.1.0
+git push origin main --tags
+```
+
+The AUR step needs `AUR_SSH_PRIVATE_KEY`, `AUR_USERNAME` and `AUR_EMAIL`
+repository secrets, and the `bluet` package must exist once at
+https://aur.archlinux.org/submit/ before automation can push to it.
 
 ## Nix and NixOS
 

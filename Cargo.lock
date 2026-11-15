@@ -662,7 +662,7 @@ dependencies = [
 
 [[package]]
 name = "bluet"
-version = "1.0.0"
+version = "1.1.0"
 dependencies = [
  "chrono",
  "flume",

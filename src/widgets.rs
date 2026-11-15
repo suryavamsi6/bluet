@@ -5,8 +5,8 @@ use std::time::Duration;
 use gpui::{
     Animation, AnimationExt, AnyElement, App, Bounds, BoxShadow, ClickEvent, Corners, CursorStyle,
     Div, Element, ElementId, Entity, FontWeight, GlobalElementId, Hsla, InspectorElementId,
-    IntoElement, LayoutId, Pixels, RenderImage, SharedString, Style, Styled, Window,
-    div, point, prelude::*, px, relative, svg,
+    IntoElement, LayoutId, Pixels, RenderImage, SharedString, Style, Styled, Window, div, point,
+    prelude::*, px, relative, svg,
 };
 use image::{Frame, RgbaImage};
 

@@ -3300,9 +3300,7 @@ impl BluetApp {
                                 .border_1()
                                 .border_color(C::border())
                                 .rounded(px(6.0))
-                                .child(
-                                    div().id("pairing-code").child(self.code_input.clone()),
-                                ),
+                                .child(div().id("pairing-code").child(self.code_input.clone())),
                         )
                     })
                     .when(failure.is_some(), |element| {
