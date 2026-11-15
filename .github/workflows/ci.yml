@@ -97,32 +97,48 @@ jobs:
   aur:
     name: Publish to the AUR
     needs: [test, build]
-    # The recipe names the GitHub tag archive, so the tag must already exist.
-    # This job needs no makepkg: packaging/aur/ is committed and
-    # scripts/package-aur.sh is checked against it on every push, so an Arch
-    # container (whose root user makepkg refuses to be) is not required here.
+    # A recipe embeds a checksum of the release archive, and that archive is
+    # built from the committed tree with every file stamped at the commit time,
+    # so a committed recipe can never describe the archive that contains it.
+    # The recipe is therefore generated from the published tag here and pushed
+    # to the AUR, which versions it from then on.
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
 
-      - name: Check the tag matches Cargo.toml and the committed recipe
+      - name: Check the tag matches Cargo.toml
         run: |
           version="$(sed -n 's/^version = "\(.*\)"$/\1/p' Cargo.toml | head -n 1)"
           if [[ "v${version}" != "${GITHUB_REF_NAME}" ]]; then
             echo "::error::Tag ${GITHUB_REF_NAME} does not match Cargo.toml version ${version}."
             exit 1
           fi
-          if ! grep -qx "pkgver=${version}" packaging/aur/PKGBUILD; then
-            echo "::error::packaging/aur/PKGBUILD is not for ${version}." \
-                 "Regenerate it with ./scripts/package-aur.sh and commit the result."
-            exit 1
-          fi
           echo "Releasing Bluet ${version}"
 
-      - name: Check the recipe matches the published archive
-        # Confirms the checksum in the committed recipe really describes the
-        # bytes the tag serves, so a stale recipe cannot be published.
+      - name: Generate the recipe from the published archive
+        # package-aur.sh exits 3 when the tag is not served yet, which is the
+        # only failure worth retrying; a build failure must fail at once.
+        run: |
+          for attempt in 1 2 3 4 5 6; do
+            rc=0
+            ./scripts/package-aur.sh || rc=$?
+            if (( rc == 0 )); then
+              echo "--- PKGBUILD ---"
+              cat dist/aur/PKGBUILD
+              exit 0
+            fi
+            if (( rc != 3 )); then
+              echo "::error::package-aur.sh failed with exit ${rc}."
+              exit $rc
+            fi
+            echo "Tag archive not published yet (attempt ${attempt}/6); retrying in 15s."
+            sleep 15
+          done
+          echo "::error::Tag ${GITHUB_REF_NAME} never became available on GitHub."
+          exit 1
+
+      - name: Check the recipe against the archive it names
         run: ./scripts/check-aur-recipe.sh
 
       - name: Push to the AUR
@@ -134,8 +150,9 @@ jobs:
           VERSION: ${{ github.ref_name }}
         run: |
           if [[ -z "${AUR_SSH_PRIVATE_KEY:-}" ]]; then
-            echo "AUR_SSH_PRIVATE_KEY is not set; skipping the AUR push."
-            echo "Set it (plus AUR_USERNAME and AUR_EMAIL) to publish automatically." >&2
+            echo "AUR_SSH_PRIVATE_KEY is not set, so the recipe was not published."
+            echo "Generated recipe is in dist/aur/; attach it to the release or"
+            echo "set AUR_SSH_PRIVATE_KEY, AUR_USERNAME and AUR_EMAIL to automate."
             exit 0
           fi
 
@@ -151,7 +168,7 @@ jobs:
             exit 1
           fi
 
-          cp packaging/aur/PKGBUILD packaging/aur/.SRCINFO aur-repo/
+          cp dist/aur/PKGBUILD dist/aur/.SRCINFO aur-repo/
           cd aur-repo
           git config user.name "${AUR_USERNAME:-bluet CI}"
           git config user.email "${AUR_EMAIL:-bluet@localhost}"

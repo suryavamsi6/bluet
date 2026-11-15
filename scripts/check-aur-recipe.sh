@@ -11,8 +11,11 @@ set -euo pipefail
 #
 #   ./scripts/check-aur-recipe.sh                  # check the published tag archive
 #   ./scripts/check-aur-recipe.sh --archive FILE   # check a file you already have
+#
+# The recipe is generated into dist/aur/ rather than committed, because it
+# embeds a checksum of the archive that contains it; see scripts/package-aur.sh.
 project="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-recipe="$project/packaging/aur/PKGBUILD"
+recipe="${AUR_RECIPE:-$project/dist/aur/PKGBUILD}"
 
 die() { echo "$*" >&2; exit 1; }
 field() { sed -n "s/^$1=//p" "$recipe" | head -n 1; }

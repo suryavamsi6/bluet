@@ -49,10 +49,16 @@ yay -S bluet        # or: paru -S bluet
 ```
 
 The AUR recipe fetches the tagged source archive from GitHub and builds it
-locally, so it tracks releases. The recipe is committed at
-`packaging/aur/PKGBUILD`; after tagging a release, `./scripts/package-aur.sh`
-regenerates it for the new version and `./scripts/check-aur-recipe.sh` confirms
-its checksum matches the archive the tag actually serves.
+locally, so it tracks releases. `./scripts/package-aur.sh` generates the recipe
+into `dist/aur/` from the published tag, and `./scripts/check-aur-recipe.sh`
+confirms its checksum matches the archive the tag actually serves.
+
+The recipe is not committed here. It records a checksum of the release archive,
+that archive is built from the committed tree, and git stamps archived files
+with the commit time, so committing a recipe changes the bytes it describes and
+no committed recipe could stay valid. The AUR repository holds the published
+recipe and its history; this repository holds the generator,
+`packaging/aur/PKGBUILD.in`.
 
 ### From a local checkout
 
@@ -72,15 +78,15 @@ The generated source archive, checksum-pinned `PKGBUILD`, and `.SRCINFO` are als
 `.github/workflows/ci.yml` runs the tests, the D-Bus integration test, clippy
 and `cargo fmt --check` on every push and pull request, and builds the release
 binary. Pushing a `v*` tag additionally attaches the binary to a GitHub release
-and publishes the committed recipe to the AUR, after verifying that its checksum
-matches the published archive.
+and publishes the recipe to the AUR, generated from that tag's archive and
+verified against it before the push.
 
 ```sh
-# bump Cargo.toml's version, regenerate the recipe, then tag:
-./scripts/package-aur.sh
-git commit -am "Release $(sed -n 's/^version = "\(.*\)"$/\1/p' Cargo.toml | head -n 1)"
+# bump Cargo.toml's version, commit, then tag that commit:
+git commit -am "Release 1.1.1"
+git push origin main
 git tag v1.1.1
-git push origin main --tags
+git push origin v1.1.1
 ```
 
 The AUR step needs `AUR_SSH_PRIVATE_KEY`, `AUR_USERNAME` and `AUR_EMAIL`

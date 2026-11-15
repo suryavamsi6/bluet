@@ -10,9 +10,12 @@ set -euo pipefail
 #   ./scripts/package-aur.sh                 # fetch the tag archive and checksum it
 #   ./scripts/package-aur.sh --archive FILE  # checksum an archive you already have
 #
-# The result is written to packaging/aur/ so the recipe that gets published to
-# the AUR is one that was committed and reviewed. scripts/check-aur-recipe.sh
-# verifies it against the published archive.
+# The result is written to dist/aur/, which is deliberately not committed. A
+# recipe records a checksum of the archive, the archive contains the committed
+# tree, and git stamps every archived file with the commit time, so committing
+# a recipe changes the very bytes it describes and no committed recipe can stay
+# valid. CI therefore generates the recipe from the published tag and pushes it
+# straight to the AUR repository, where it is version controlled from then on.
 project="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 version="$(sed -n 's/^version = "\(.*\)"$/\1/p' "$project/Cargo.toml" | head -n 1)"
 if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+([A-Za-z0-9.+-]*)$ ]]; then
@@ -46,10 +49,10 @@ fi
 
 sha256="$(sha256sum "$archive" | awk '{print $1}')"
 
-output="$project/packaging/aur"
+output="$project/dist/aur"
 mkdir -p "$output"
 sed -e "s/@VERSION@/${version}/g" -e "s/@SOURCE_SHA256@/${sha256}/g" \
-  "$output/PKGBUILD.in" > "$output/PKGBUILD"
+  "$project/packaging/aur/PKGBUILD.in" > "$output/PKGBUILD"
 
 # .SRCINFO is a mechanical projection of the recipe's fields. The recipe is our
 # own bash file, so reading its arrays is exact, and this avoids needing
