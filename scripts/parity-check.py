@@ -61,7 +61,10 @@ def best_offset(ref: np.ndarray, live: np.ndarray, span: int = 6) -> tuple[int, 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("live", help="screenshot of the running app")
+    parser.add_argument(
+        "live",
+        help="screenshot of the running app, framed at the reference window size",
+    )
     parser.add_argument(
         "--reference",
         default="artifacts/bluet-native.png",
@@ -80,7 +83,9 @@ def main() -> int:
     if ref.shape != live.shape:
         print(
             f"FAIL size {live.shape[1]}x{live.shape[0]} != reference "
-            f"{ref.shape[1]}x{ref.shape[0]}",
+            f"{ref.shape[1]}x{ref.shape[0]}\n"
+            "      Frame the window at the reference size before capturing; a "
+            "smaller window shifts every row and invalidates the comparison.",
             file=sys.stderr,
         )
         return 1
