@@ -97,49 +97,33 @@ jobs:
   aur:
     name: Publish to the AUR
     needs: [test, build]
-    # The recipe points at the GitHub tag archive, so the tag must already
-    # exist; that is why this runs on the tag rather than on the main push.
+    # The recipe names the GitHub tag archive, so the tag must already exist.
+    # This job needs no makepkg: packaging/aur/ is committed and
+    # scripts/package-aur.sh is checked against it on every push, so an Arch
+    # container (whose root user makepkg refuses to be) is not required here.
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-24.04
-    # An Arch container is the only way to get a real makepkg for .SRCINFO.
-    container: archlinux:latest
     steps:
-      - name: Install packaging tools
-        run: |
-          pacman -Syu --noconfirm --needed git openssh curl pacman-contrib
-
       - uses: actions/checkout@v5
 
-      - name: Check the tag matches Cargo.toml
+      - name: Check the tag matches Cargo.toml and the committed recipe
         run: |
           version="$(sed -n 's/^version = "\(.*\)"$/\1/p' Cargo.toml | head -n 1)"
           if [[ "v${version}" != "${GITHUB_REF_NAME}" ]]; then
-            echo "Tag ${GITHUB_REF_NAME} does not match Cargo.toml version ${version}." >&2
+            echo "::error::Tag ${GITHUB_REF_NAME} does not match Cargo.toml version ${version}."
+            exit 1
+          fi
+          if ! grep -qx "pkgver=${version}" packaging/aur/PKGBUILD; then
+            echo "::error::packaging/aur/PKGBUILD is not for ${version}." \
+                 "Regenerate it with ./scripts/package-aur.sh and commit the result."
             exit 1
           fi
           echo "Releasing Bluet ${version}"
 
-      - name: Generate PKGBUILD and .SRCINFO
-        run: |
-          # GitHub can take a moment to serve a freshly pushed tag archive, and
-          # the checksum has to describe the exact bytes users will download.
-          for attempt in 1 2 3 4 5 6; do
-            if ./scripts/package-aur.sh; then
-              exit 0
-            fi
-            echo "Tag archive not available yet (attempt ${attempt}); retrying in 15s."
-            sleep 15
-          done
-          echo "::error::Could not fetch the tag archive. Check that tag" \
-               "${GITHUB_REF_NAME} exists and is pushed."
-          exit 1
-
-      - name: Show the generated recipe
-        run: |
-          echo "--- PKGBUILD ---"
-          cat dist/aur/PKGBUILD
-          echo "--- .SRCINFO ---"
-          cat dist/aur/.SRCINFO
+      - name: Check the recipe matches the published archive
+        # Confirms the checksum in the committed recipe really describes the
+        # bytes the tag serves, so a stale recipe cannot be published.
+        run: ./scripts/check-aur-recipe.sh
 
       - name: Push to the AUR
         env:
@@ -151,6 +135,7 @@ jobs:
         run: |
           if [[ -z "${AUR_SSH_PRIVATE_KEY:-}" ]]; then
             echo "AUR_SSH_PRIVATE_KEY is not set; skipping the AUR push."
+            echo "Set it (plus AUR_USERNAME and AUR_EMAIL) to publish automatically." >&2
             exit 0
           fi
 
@@ -161,12 +146,12 @@ jobs:
           export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/aur -o IdentitiesOnly=yes"
 
           if ! git clone --depth 1 "ssh://aur@aur.archlinux.org/${AUR_PKGNAME}.git" aur-repo; then
-            echo "::error::Could not clone the AUR package. A brand-new AUR package must"
-            echo "::error::be created once at https://aur.archlinux.org/submit/ first."
+            echo "::error::Could not clone the AUR package. A brand-new package must be" \
+                 "created once at https://aur.archlinux.org/submit/ before automation can push."
             exit 1
           fi
 
-          cp dist/aur/PKGBUILD dist/aur/.SRCINFO aur-repo/
+          cp packaging/aur/PKGBUILD packaging/aur/.SRCINFO aur-repo/
           cd aur-repo
           git config user.name "${AUR_USERNAME:-bluet CI}"
           git config user.email "${AUR_EMAIL:-bluet@localhost}"
