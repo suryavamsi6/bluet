@@ -1,8 +1,17 @@
 # Bluet
 
+![Bluet main window: device list, connected headphones with battery, audio profile and volume in the details pane](docs/screenshots/main-window.png)
+
 A native Bluetooth manager built with **Rust and [GPUI](https://github.com/zed-industries/zed/tree/main/crates/gpui)**, following the connected **BlueT.pen** design. GPUI draws the three-pane interface directly through the GPU, without a browser or Electron.
 
 Bluet connects to the **existing BlueZ system service** through D-Bus using `zbus`. Device names, power, pairing, connection status, battery and trust come from BlueZ. Audio controls use the computer's existing PipeWire/PulseAudio service through `pactl`.
+
+## Screenshots
+
+![Device menu open on a connected device, with Disconnect and Forget device](docs/screenshots/device-menu.png)
+
+The images above are captures of the running app on Arch Linux, not design
+mockups. The design references they were checked against are in `design/`.
 
 ## Install
 
@@ -175,8 +184,6 @@ programs.bluet.enable = true;
 
 The opt-in module installs Bluet and enables `hardware.bluetooth.enable`. It leaves your audio configuration under your control. See [nix/README.md](nix/README.md) for runtime details.
 
-No project license has been specified. Packages include a notice stating that fact and preserve the bundled third-party licenses.
-
 ## Controls
 
 - Power and visibility write the selected adapter's actual BlueZ properties.
@@ -191,3 +198,19 @@ File transfers are not implemented. The interface shows that limitation and does
 The effects use a Rust adaptation of [dither-kit-rs](https://github.com/DeepanshuMishraa/dither-kit-rs)'s Bayer8 technique and field vocabulary. Textures are generated deterministically, cached as native GPUI images behind text and controls, and use no animation loop. The upstream MIT license is included in `assets/licenses/DitherKit-LICENSE`.
 
 Inter and Geist Mono are bundled under the SIL Open Font License. Lucide icons use the ISC license. Dependency and asset license texts are in `assets/licenses/`.
+
+## License
+
+Bluet is licensed under either of
+
+- Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE))
+- MIT license ([LICENSE-MIT](LICENSE-MIT))
+
+at your option. Unless you explicitly state otherwise, any contribution
+intentionally submitted for inclusion in Bluet by you, as defined in the
+Apache-2.0 license, shall be dual licensed as above, without any additional
+terms or conditions.
+
+Bundled fonts, icons and adapted code keep their own licenses, listed above
+and included in `assets/licenses/`. Every package installs both the project
+licenses and those third-party license texts.
