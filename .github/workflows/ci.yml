@@ -84,7 +84,9 @@ jobs:
   release:
     name: Attach binary to the release
     needs: [test, build]
-    if: startsWith(github.ref, 'refs/tags/v') || inputs.publish_aur
+    # Only a tag is a release. A manual publish_aur run has no tag, and
+    # action-gh-release fails with "GitHub Releases requires a tag".
+    if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-24.04
     permissions:
       contents: write
